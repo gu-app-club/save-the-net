@@ -1,74 +1,47 @@
 import got from "got";
 import { Input, TextArea } from "./inputs";
-import { Primary } from "./buttons";
+import { PrimaryButton } from "./ui/buttons";
+import styled from "styled-components";
+import Card from "./ui/card";
+
+const Column = Card.extend`
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+`;
 
 const StatelessLetter = props => (
-  <div>
-    <div className="letter">
-      <Input
-        name="name"
-        type="text"
-        placeholder="George Washington"
-        onChange={props.onChange}
-        label="Name"
-        value={props.name}
-      />
+  <Column>
+    <Input
+      name="name"
+      type="text"
+      placeholder="George Washington"
+      onChange={props.onChange}
+      label="Name"
+      value={props.name}
+    />
 
-      <Input
-        name="zipCode"
-        type="number"
-        placeholder="90210"
-        value={props.zipCode}
-        name="zipCode"
-        label="Zip Code"
-        onChange={props.onChange}
-      />
+    <Input
+      name="zipCode"
+      type="number"
+      placeholder="90210"
+      value={props.zipCode}
+      name="zipCode"
+      label="Zip Code"
+      onChange={props.onChange}
+    />
 
-      <TextArea
-        type="text"
-        placeholder="Please support Net Neutrality..."
-        value={props.message}
-        name="message"
-        label="Message"
-        onChange={props.onChange}
-      />
+    <TextArea
+      type="text"
+      placeholder="Please support Net Neutrality..."
+      value={props.message}
+      name="message"
+      label="Message"
+      onChange={props.onChange}
+    />
 
-      <Primary onClick={props.onSubmit}> Submit </Primary>
-    </div>
-
-    <style jsx>
-      {`
-        .letter {
-          display: flex;
-          flex-direction: column;
-          margin: 0 auto;
-          height: 100%;
-          padding: 3em;
-          background: white;
-          border: 1px solid #d3e0e8;
-          border-radius: 5px;
-        }
-
-        input,
-        textarea {
-          padding: 1em;
-          margin-bottom: 1em;
-          border-radius: 5px;
-          border: 1px solid #d3e0e8;
-          width: 100%;
-          min-width: 250px;
-          font-size: 1em;
-          font-family: helvetica;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-          color: #5a6c78;
-          font-size: 1em;
-        }
-      `}
-    </style>
-  </div>
+    <PrimaryButton onClick={props.onSubmit}> Submit </PrimaryButton>
+  </Column>
 );
 
 export class Letter extends React.Component {

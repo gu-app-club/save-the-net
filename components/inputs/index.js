@@ -1,40 +1,36 @@
-/**
- * AHHHHHHH WHAT THE FUCK IF ANYONE CAN GET 
- * THE STYLED JSX TO NOT MAKE ME COPY PASTE PLEASE DO
- */
+import { Input as InputUI, TextArea as TextAreaUI } from "../ui/inputs";
+import styled from "styled-components";
+
+const Label = styled.label`
+  width: 100%;
+  display: flex;
+  margin-bottom: ${props => props.theme.spacing.lessPadding};
+`;
+
+const TextGrouping = styled.div`
+  width: 100%;
+  margin-bottom: ${props => props.theme.spacing.padding};
+`;
+
 export const TextArea = props => (
-  <label htmlFor={`${props.name}-input`}>
-    {props.label || props.name}
-    <textarea
+  <TextGrouping>
+    <Label htmlFor={`${props.name}-input`}>{props.label || props.name}</Label>
+    <TextAreaUI
       type={props.type || "text"}
       placeholder={props.placeholder}
       value={props.value}
       name={props.name}
       onChange={props.onChange}
       id={`${props.name}-input`}
+      rows={5}
     />
-
-    <style jsx>{`
-      input,
-      textarea {
-        padding: 1em;
-        margin-bottom: 1em;
-        margin-top: 0.5em;
-        border-radius: 5px;
-        border: 1px solid #d3e0e8;
-        width: 100%;
-        min-width: 250px;
-        font-size: 1em;
-        font-family: helvetica;
-      }
-    `}</style>
-  </label>
+  </TextGrouping>
 );
 
 export const Input = props => (
-  <label htmlFor={`${props.name}-input`}>
-    {props.label || props.name}
-    <input
+  <TextGrouping>
+    <Label htmlFor={`${props.name}-input`}>{props.label || props.name} </Label>
+    <InputUI
       type={props.type || "text"}
       placeholder={props.placeholder}
       value={props.value}
@@ -42,20 +38,5 @@ export const Input = props => (
       onChange={props.onChange}
       id={`${props.name}-input`}
     />
-
-    <style jsx>{`
-      input,
-      textarea {
-        padding: 1em;
-        margin-bottom: 1em;
-        margin-top: 0.5em;
-        border-radius: 5px;
-        border: 1px solid #d3e0e8;
-        width: 100%;
-        min-width: 250px;
-        font-size: 1em;
-        font-family: helvetica;
-      }
-    `}</style>
-  </label>
+  </TextGrouping>
 );
