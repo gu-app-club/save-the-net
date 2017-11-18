@@ -1,10 +1,17 @@
 import Link from "next/link";
 import Head from "../components/head";
-import Nav from "../components/nav";
+import { Letter } from "../components/letter";
 
 export default () => (
   <div>
     <Head title="Home" />
-    <Nav />
+    <Letter />
+
+    <style jsx global>{`
+      body: {
+        margin: 0;
+        padding: 0;
+      }
+    `}</style>
   </div>
 );
