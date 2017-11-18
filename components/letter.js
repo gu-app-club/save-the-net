@@ -1,35 +1,71 @@
 import got from "got";
+import { Input, TextArea } from "./inputs";
+import { Primary } from "./buttons";
 
 const StatelessLetter = props => (
   <div>
-    <input
-      type="text"
-      placeholder="name"
-      value={props.name}
-      name="name"
-      onChange={props.onChange}
-    />
-    <input
-      type="number"
-      placeholder="zip code"
-      value={props.zipCode}
-      name="zipCode"
-      onChange={props.onChange}
-    />
-    <textarea
-      type="text"
-      placeholder="Message"
-      value={props.message}
-      name="message"
-      onChange={props.onChange}
-    />
-    <button onClick={props.onSubmit}> Send Message </button>
+    <div className="letter">
+      <Input
+        name="name"
+        type="text"
+        placeholder="George Washington"
+        onChange={props.onChange}
+        label="Name"
+        value={props.name}
+      />
+
+      <Input
+        name="zipCode"
+        type="number"
+        placeholder="90210"
+        value={props.zipCode}
+        name="zipCode"
+        label="Zip Code"
+        onChange={props.onChange}
+      />
+
+      <TextArea
+        type="text"
+        placeholder="Please support Net Neutrality..."
+        value={props.message}
+        name="message"
+        label="Message"
+        onChange={props.onChange}
+      />
+
+      <Primary onClick={props.onSubmit}> Submit </Primary>
+    </div>
 
     <style jsx>
       {`
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
+        .letter {
+          display: flex;
+          flex-direction: column;
+          margin: 0 auto;
+          height: 100%;
+          padding: 3em;
+          background: white;
+          border: 1px solid #d3e0e8;
+          border-radius: 5px;
+        }
+
+        input,
+        textarea {
+          padding: 1em;
+          margin-bottom: 1em;
+          border-radius: 5px;
+          border: 1px solid #d3e0e8;
+          width: 100%;
+          min-width: 250px;
+          font-size: 1em;
+          font-family: helvetica;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+          color: #5a6c78;
+          font-size: 1em;
+        }
       `}
     </style>
   </div>
@@ -61,9 +97,11 @@ export class Letter extends React.Component {
         name: this.state.name
       },
       json: true
-    }).then(foo => {
-        console.log(foo); //TODO 
-    }).catch(console.error)
+    })
+      .then(foo => {
+        console.log(foo); //TODO
+      })
+      .catch(console.error);
   }
 
   render() {
@@ -74,6 +112,7 @@ export class Letter extends React.Component {
         message={this.state.message}
         onChange={this.changeByName}
         onSubmit={this.onSubmit}
+        className="letter"
       />
     );
   }
