@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "next": "^4.1.4",
     "react": "^16.1.1",
