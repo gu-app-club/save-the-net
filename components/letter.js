@@ -57,7 +57,7 @@ export class Letter extends React.Component {
     got("/send", {
       body: {
         message: this.state.message,
-        zipCode: this.state.zipCode,
+        zip: this.state.zipCode,
         name: this.state.name
       },
       json: true
