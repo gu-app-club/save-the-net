@@ -1,3 +1,5 @@
+import got from "got";
+
 const StatelessLetter = props => (
   <div>
     <input
@@ -39,15 +41,29 @@ export class Letter extends React.Component {
     this.state = {
       name: "",
       zipCode: "",
-      message: "message"
+      message: ""
     };
     this.changeByName = this.changeByName.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   changeByName(event) {
     const change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
+  }
+
+  onSubmit(event) {
+    got("/send", {
+      body: {
+        message: this.state.message,
+        zipCode: this.state.zipCode,
+        name: this.state.name
+      },
+      json: true
+    }).then(foo => {
+        console.log(foo); //TODO 
+    }).catch(console.error)
   }
 
   render() {
@@ -57,6 +73,7 @@ export class Letter extends React.Component {
         zipCode={this.state.zipCode}
         message={this.state.message}
         onChange={this.changeByName}
+        onSubmit={this.onSubmit}
       />
     );
   }
