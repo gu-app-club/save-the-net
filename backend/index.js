@@ -1,4 +1,4 @@
-const zipcodes = require("zipcodes");
+const zipcodes = require("./utils/zipcodes");
 const templateMessage = require("fs")
   .readFileSync("./backend/templates/net-neutrality-message.html")
   .toString();
@@ -6,11 +6,10 @@ const templateNoMessage = require("fs")
   .readFileSync("./backend/templates/net-neutrality-no-message.html")
   .toString();
 const states = require("./rep.json");
-
 const Lob = require("lob")("test_7baea6cc03130384038e90b624d4a3a11b1");
 
 function getReps(state) {
-  for (s of states) {
+  for (let s of states) {
     if (s.name == state) {
       return s.reps;
     }
@@ -58,12 +57,21 @@ function lob(user, rep) {
   while (response == null) {
     require("deasync").runLoopOnce();
   }
-
   return response;
 }
 
 function send(request, response) {
   let zipinfo = zipcodes.lookup(request.body.zip);
+  console.log(request.body);
+  if (!zipinfo) {
+    console.log("Invalid zip code: " + request.body.zip);
+    response.send({
+      success: false,
+      message: "Invalid zip code: " + request.body.zip
+    });
+    return;
+  }
+
   let requestData = {
     name: request.body.name,
     address_zip: request.body.zip,
@@ -77,13 +85,36 @@ function send(request, response) {
 
   let reps = getReps(requestData.address_state);
 
+  if (!reps) {
+    console.log("Could not locate reps from " + requestData.address_state);
+    response.send({
+      success: false,
+      message: "Could not locate reps from " + requestData.address_state
+    });
+    return;
+  }
+
   let urls = Array();
-  for (rep of reps) {
+  for (let rep of reps) {
     let lobRes = lob(requestData, rep);
+    if (lobRes.error) {
+      console.log(error);
+      respones.send({
+        success: false,
+        message: "An unexpected error has occurred."
+      });
+      return;
+    }
     urls.push(lobRes.response.url);
   }
-  response.send(urls.join("\n"));
+  response.send({
+    success: true,
+    reps: reps,
+    urls: urls
+  });
 }
 module.exports = {
-  send
+  send,
+  lob,
+  getReps
 };

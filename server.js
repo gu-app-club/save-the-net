@@ -1,6 +1,7 @@
-const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
+
+const server = require("./backend/server");
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -9,19 +10,17 @@ const handle = app.getRequestHandler();
 const backend = require("./backend");
 
 app.prepare().then(() => {
-  const server = express();
-
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(bodyParser.json());
-
-  server.post("/send", backend.send);
 
   server.get("*", (req, res) => {
     return handle(req, res);
   });
-
+  /* eslint-disable no-console */
   server.listen(port, err => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    if (err) {
+      throw err;
+    }
+    console.log("> Server ready on http://localhost:" + port);
   });
 });
