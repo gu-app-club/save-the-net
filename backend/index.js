@@ -78,7 +78,7 @@ function send(request, response) {
   let reps = getReps(requestData.address_state);
 
   let urls = Array();
-  for (rep of reps) {
+  for (let rep of reps) {
     let lobRes = lob(requestData, rep);
     urls.push(lobRes.response.url);
   }

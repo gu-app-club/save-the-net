@@ -7,6 +7,7 @@ import Card from "./ui/card";
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
+  min-width: 600px;
 `;
 
 const StatelessLetter = props => (

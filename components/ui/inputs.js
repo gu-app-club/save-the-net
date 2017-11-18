@@ -19,8 +19,7 @@ export const Input = styled.input`
 
 export const TextArea = styled.textarea`
   border-radius: 5px;
-  padding: 0px 16px 0px 16px;
-  height: 40px;
+  padding: ${props => props.theme.spacing.padding};
   background-color: ${props => props.theme.colors.secondaryBackground};
   color: ${props => props.theme.colors.text};
   border-width: 1px;
@@ -32,4 +31,5 @@ export const TextArea = styled.textarea`
   font-size: ${props => props.theme.fontSizes.regular};
   box-sizing: border-box;
   width: 100%;
+  min-height: ${props => props.theme.spacing.extraPadding};
 `;
