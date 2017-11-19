@@ -18,6 +18,9 @@ function lookup(zipcode) {
               break;
             }
           }
+          if (!indices.length) {
+            wait = false;
+          }
           for (let index of indices) {
             result.push(json.officials[index]);
           }

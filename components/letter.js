@@ -10,7 +10,7 @@ import { Input, TextArea } from "./inputs";
 import { PrimaryButton } from "./ui/buttons";
 import styled from "styled-components";
 import Card from "./ui/card";
-import { sendLetter } from "../api";
+import { sendLetter, getReps } from "../api";
 import {
   injectStripe,
   CardElement,
@@ -142,6 +142,16 @@ export class Letter extends React.Component {
     const change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
+
+    if (event.target.name == "zipCode" && event.target.value.length >= 5) {
+      getReps(event.target.value).then(({ data, err }) => {
+        if (err) {
+          this.setState({ err });
+          return;
+        }
+        console.log(data);
+      });
+    }
   }
 
   onSubmit(event, stripe) {
