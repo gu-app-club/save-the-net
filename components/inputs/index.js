@@ -23,6 +23,7 @@ export const TextArea = props => (
       onChange={props.onChange}
       id={`${props.name}-input`}
       rows={5}
+      problem={props.problem}
     />
   </TextGrouping>
 );
@@ -37,6 +38,7 @@ export const Input = props => (
       name={props.name}
       onChange={props.onChange}
       id={`${props.name}-input`}
+      problem={props.problem}
     />
   </TextGrouping>
 );

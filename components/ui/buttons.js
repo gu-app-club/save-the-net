@@ -34,6 +34,10 @@ export const PrimaryButton = Button.extend`
   &:active {
     background: ${props => props.theme.colors.primary};
   }
+
+  &:disabled {
+    background: ${props => props.theme.colors.border};
+  }
 `;
 
 export const SuccessButton = Button.extend`

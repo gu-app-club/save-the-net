@@ -3,12 +3,15 @@ import { Input, TextArea } from "./inputs";
 import { PrimaryButton } from "./ui/buttons";
 import styled from "styled-components";
 import Card from "./ui/card";
+import { sendLetter } from "../api";
 
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
   min-width: 600px;
 `;
+
+const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;
 
 const StatelessLetter = props => (
   <Column>
@@ -21,6 +24,7 @@ const StatelessLetter = props => (
       onChange={props.onChange}
       label="Name"
       value={props.name}
+      problem={props.problems.includes("name")}
     />
 
     <Input
@@ -30,6 +34,7 @@ const StatelessLetter = props => (
       value={props.zipCode}
       label="Zip Code"
       onChange={props.onChange}
+      problem={props.problems.includes("zipCode")}
     />
 
     <Input
@@ -39,6 +44,7 @@ const StatelessLetter = props => (
       value={props.address}
       label="Address"
       onChange={props.onChange}
+      problem={props.problems.includes("address")}
     />
 
     <TextArea
@@ -48,9 +54,17 @@ const StatelessLetter = props => (
       name="message"
       label="Message"
       onChange={props.onChange}
+      problem={props.problems.includes("message")}
     />
 
-    <PrimaryButton onClick={props.onSubmit}> Save the Internet! </PrimaryButton>
+    <PrimaryButton
+      onClick={props.onSubmit}
+      disabled={props.disabled ? "disabled" : ""}
+    >
+      {props.disabled ? "Hold on a moment..." : "Save the Internet!"}
+    </PrimaryButton>
+
+    {props.err && <ErrText> {props.err} </ErrText>}
   </Column>
 );
 
@@ -61,7 +75,10 @@ export class Letter extends React.Component {
       name: "",
       zipCode: "",
       message: "",
-      address: ""
+      address: "",
+      disabledButton: false,
+      problems: [],
+      err: ""
     };
     this.changeByName = this.changeByName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -74,19 +91,21 @@ export class Letter extends React.Component {
   }
 
   onSubmit(event) {
-    got("/api/send", {
-      body: {
-        message: this.state.message,
-        zip: this.state.zipCode,
-        address_line1: this.state.address,
-        name: this.state.name
-      },
-      json: true
-    })
-      .then(response => {
-        console.log(response); //TODO
-      })
-      .catch(console.error);
+    this.setState({
+      disabledButton: true
+    });
+
+    sendLetter(
+      this.state.message,
+      this.state.zipCode,
+      this.state.address,
+      this.state.name
+    ).then(({ data, err }) => {
+      if (err) {
+        this.setState({ err });
+        return;
+      }
+    });
   }
 
   render() {
@@ -97,7 +116,9 @@ export class Letter extends React.Component {
         message={this.state.message}
         onChange={this.changeByName}
         onSubmit={this.onSubmit}
+        disabled={this.state.disabledButton}
         className="letter"
+        problems={this.state.problems}
       />
     );
   }
