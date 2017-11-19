@@ -4,6 +4,9 @@ import { PrimaryButton } from "./ui/buttons";
 import styled from "styled-components";
 import Card from "./ui/card";
 import { sendLetter } from "../api";
+import { StripeProvider } from "react-stripe-elements-universal";
+
+import MyStoreCheckout from "../components/stripe/MyStoreCheckout";
 
 const Column = Card.extend`
   display: flex;
@@ -110,16 +113,23 @@ export class Letter extends React.Component {
 
   render() {
     return (
-      <StatelessLetter
-        name={this.state.name}
-        zipCode={this.state.zipCode}
-        message={this.state.message}
-        onChange={this.changeByName}
-        onSubmit={this.onSubmit}
-        disabled={this.state.disabledButton}
-        className="letter"
-        problems={this.state.problems}
-      />
+      <div>
+        <StatelessLetter
+          name={this.state.name}
+          zipCode={this.state.zipCode}
+          message={this.state.message}
+          onChange={this.changeByName}
+          onSubmit={this.onSubmit}
+          disabled={this.state.disabledButton}
+          className="letter"
+          problems={this.state.problems}
+        />
+        <Column>
+          <StripeProvider apiKey="pk_test_12345">
+            <MyStoreCheckout />
+          </StripeProvider>
+        </Column>
+      </div>
     );
   }
 }

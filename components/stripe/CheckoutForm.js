@@ -1,5 +1,7 @@
 import React from "react";
 import { injectStripe } from "react-stripe-elements-universal";
+import { PrimaryButton } from "../ui/buttons";
+import Card from "../ui/card";
 
 import CardSection from "./CardSection";
 
@@ -22,7 +24,11 @@ class CheckoutForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <CardSection />
-        <button>Confirm order</button>
+        <PrimaryButton
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </PrimaryButton>
       </form>
     );
   }
