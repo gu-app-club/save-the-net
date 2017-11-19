@@ -1,4 +1,4 @@
-<html style="padding-top: 3in; margin: .5in;">
+module.exports = `<html style="padding-top: 3in; margin: .5in;">
 <p>Representative {{rep}},</p>
 
 <p>My name is {{name}} and I'm a concerned citizen from {{city}}.</p>
@@ -7,10 +7,11 @@
     Internet Service Providers. Preserving an open internet is crucial for fair and equal access to the resources and information
     available on it.
 </p>
+<p>{{message}}</p>
 
 <p>Thank you for your time and attention,
 </p>
 
 <p>{{name}}</p>
 
-</html>
+</html>`;
