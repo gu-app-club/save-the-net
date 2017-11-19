@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "prod": "next build && NODE_ENV='production' PORT='80' node server.js"
+    "prod":
+      "yarn install && next build && NODE_ENV='production' PORT='80' node server.js"
   },
   "dependencies": {
     "babel-jest": "^21.2.0",
