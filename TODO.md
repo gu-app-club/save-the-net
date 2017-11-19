@@ -16,6 +16,8 @@ All users pay XYZ amount of money. That goes to sending the letter and keeping t
 
 ## Administrative Tasks 
 - [ ] Sign up for Stripe 
+- [ ] Write a better README.md, not just the simple file
+- [ ] Create a Contributing file, MIT License file. 
 - [ ] Write short explaination of what net neutrality is and why they should care 
 - [ ] Get Domain Name (and come up with name) 
 - [ ] Figure out total expenses given different scienarios: (100 users, 1000 users, 10,000 users, 100,000 users) 
