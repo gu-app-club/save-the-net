@@ -13,7 +13,10 @@ function lookup(zipcode) {
         let state = null;
         let city = null;
         for (let element of json.results[0].address_components) {
-          if (element.types[0] == "administrative_area_level_2")
+          if (
+            element.types[0] == "administrative_area_level_2" ||
+            element.types[0] == "locality"
+          )
             city = element.long_name;
           if (element.types[0] == "administrative_area_level_1")
             state = element.short_name;
@@ -26,6 +29,7 @@ function lookup(zipcode) {
           }
         }
         if (!city || !state) {
+          console.log(city + " : " + state);
           result = false;
           return;
         }

@@ -10,17 +10,22 @@ function lookup(zipcode) {
   fetch(url)
     .then(response => {
       response.json().then(json => {
-        let indices = Array;
-        for (let office of json.offices) {
-          if (office.name.indexOf("Representatives") > -1) {
-            indices = office.officialIndices;
-            break;
+        try {
+          let indices = Array;
+          for (let office of json.offices) {
+            if (office.name.indexOf("Representatives") > -1) {
+              indices = office.officialIndices;
+              break;
+            }
           }
+          for (let index of indices) {
+            result.push(json.officials[index]);
+          }
+          wait = false;
+        } catch (error) {
+          console.log(error);
+          wait = false;
         }
-        for (let index of indices) {
-          result.push(json.officials[index]);
-        }
-        wait = false;
       });
     })
     .catch(error => {

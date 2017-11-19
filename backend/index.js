@@ -52,7 +52,6 @@ function lob(user, rep) {
 }
 
 function send(request, response) {
-  representatives.lookup(request.body.zip);
   let zipinfo = zipcodes.lookup(request.body.zip);
   console.log(request.body);
   if (!zipinfo) {
@@ -105,7 +104,15 @@ function send(request, response) {
     urls: urls
   });
 }
+
+function getrep(request, response) {
+  let zip = request.params.zipcode;
+  let reps = representatives.lookup(zip);
+  response.send(reps);
+}
+
 module.exports = {
   send,
-  lob
+  lob,
+  getrep
 };
