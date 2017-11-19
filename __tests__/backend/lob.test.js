@@ -7,15 +7,15 @@ const expectedMessage = {
     metadata: {},
     to: {
       description: null,
-      name: "Kurt Schrader",
+      name: "GREG WALDEN",
       company: null,
       phone: null,
       email: null,
-      address_line1: "2431 Cannon House Office Building",
-      address_line2: "27 Independence Ave SE",
-      address_city: "Washington",
+      address_line1: "2185 RAYBURN HOUSE OFC BUILDING",
+      address_line2: "",
+      address_city: "WASHINGTON",
       address_state: "DC",
-      address_zip: "20003",
+      address_zip: "20515-0001",
       address_country: "UNITED STATES",
       metadata: {},
       deleted: true,
@@ -60,15 +60,15 @@ const expectedNoMessage = {
     metadata: {},
     to: {
       description: null,
-      name: "Kurt Schrader",
+      name: "GREG WALDEN",
       company: null,
       phone: null,
       email: null,
-      address_line1: "2431 Cannon House Office Building",
-      address_line2: "27 Independence Ave SE",
-      address_city: "Washington",
+      address_line1: "2185 RAYBURN HOUSE OFC BUILDING",
+      address_line2: "",
+      address_city: "WASHINGTON",
       address_state: "DC",
-      address_zip: "20003",
+      address_zip: "20515-0001",
       address_country: "UNITED STATES",
       metadata: {},
       deleted: true,
@@ -119,16 +119,37 @@ test("Checking message", () => {
         message: "Please listen to the people!"
       },
       {
-        name: "Kurt Schrader",
-        address: {
-          address_zip: "20003",
-          address_line1: "2431 Cannon House Office Building",
-          address_line2: "27 Independence Ave SE",
-          address_city: "Washington",
-          address_state: "DC",
-          address_country: "US"
-        },
-        phone: "202-225-5711"
+        name: "Greg Walden",
+        address: [
+          {
+            line1: "2185 Rayburn House Office Building",
+            city: "Washington",
+            state: "DC",
+            zip: "20515"
+          }
+        ],
+        party: "Republican",
+        phones: ["(202) 225-6730"],
+        urls: ["http://walden.house.gov/"],
+        photoUrl: "http://bioguide.congress.gov/bioguide/photo/W/W000791.jpg",
+        channels: [
+          {
+            type: "Facebook",
+            id: "repgregwalden"
+          },
+          {
+            type: "Twitter",
+            id: "repgregwalden"
+          },
+          {
+            type: "YouTube",
+            id: "RepGregWalden"
+          },
+          {
+            type: "GooglePlus",
+            id: "108852759737967625278"
+          }
+        ]
       }
     )
   ).toMatchObject(expectedMessage);
@@ -147,16 +168,37 @@ test("Checking no message", () => {
         message: ""
       },
       {
-        name: "Kurt Schrader",
-        address: {
-          address_zip: "20003",
-          address_line1: "2431 Cannon House Office Building",
-          address_line2: "27 Independence Ave SE",
-          address_city: "Washington",
-          address_state: "DC",
-          address_country: "US"
-        },
-        phone: "202-225-5711"
+        name: "Greg Walden",
+        address: [
+          {
+            line1: "2185 Rayburn House Office Building",
+            city: "Washington",
+            state: "DC",
+            zip: "20515"
+          }
+        ],
+        party: "Republican",
+        phones: ["(202) 225-6730"],
+        urls: ["http://walden.house.gov/"],
+        photoUrl: "http://bioguide.congress.gov/bioguide/photo/W/W000791.jpg",
+        channels: [
+          {
+            type: "Facebook",
+            id: "repgregwalden"
+          },
+          {
+            type: "Twitter",
+            id: "repgregwalden"
+          },
+          {
+            type: "YouTube",
+            id: "RepGregWalden"
+          },
+          {
+            type: "GooglePlus",
+            id: "108852759737967625278"
+          }
+        ]
       }
     )
   ).toMatchObject(expectedNoMessage);
