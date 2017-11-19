@@ -1,11 +1,7 @@
 const zipcodes = require("zipcodes2016");
 const representatives = require("./utils/representatives");
-const templateMessage = require("fs")
-  .readFileSync("./backend/templates/net-neutrality-message.html")
-  .toString();
-const templateNoMessage = require("fs")
-  .readFileSync("./backend/templates/net-neutrality-no-message.html")
-  .toString();
+const templateMessage = require("./templates/net-neutrality-message");
+const templateNoMessage = require("./templates/net-neutrality-no-message");
 const Lob = require("lob")("test_7baea6cc03130384038e90b624d4a3a11b1");
 
 const payment = require("./utils/payment");
