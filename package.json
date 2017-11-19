@@ -4,7 +4,8 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "prod": "next build && NODE_ENV='production' PORT='80' node server.js"
   },
   "dependencies": {
     "babel-jest": "^21.2.0",

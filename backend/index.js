@@ -84,7 +84,7 @@ function send(request, response) {
   );
 
   if (purchase.error) {
-    console.log(error);
+    console.log(purchase.error);
     response.send({
       success: false,
       message: "Could not charge card."
