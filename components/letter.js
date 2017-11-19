@@ -29,7 +29,7 @@ const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;
 const StatelessLetter = props => (
   <Column>
     <h1>Let's do this.</h1>
-    Z<Input
+    <Input
       name="name"
       type="text"
       placeholder="George Washington"
