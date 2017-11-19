@@ -12,6 +12,8 @@ const Column = Card.extend`
 
 const StatelessLetter = props => (
   <Column>
+    <h1>Let's do this.</h1>
+
     <Input
       name="name"
       type="text"
@@ -26,8 +28,16 @@ const StatelessLetter = props => (
       type="number"
       placeholder="90210"
       value={props.zipCode}
-      name="zipCode"
       label="Zip Code"
+      onChange={props.onChange}
+    />
+
+    <Input
+      name="address"
+      type="text"
+      placeholder="1600 Pennsylvania Ave NW, Washington, DC 20500"
+      value={props.address}
+      label="Address"
       onChange={props.onChange}
     />
 
@@ -40,7 +50,7 @@ const StatelessLetter = props => (
       onChange={props.onChange}
     />
 
-    <PrimaryButton onClick={props.onSubmit}> Submit </PrimaryButton>
+    <PrimaryButton onClick={props.onSubmit}> Save the Internet! </PrimaryButton>
   </Column>
 );
 
@@ -50,7 +60,8 @@ export class Letter extends React.Component {
     this.state = {
       name: "",
       zipCode: "",
-      message: ""
+      message: "",
+      address: ""
     };
     this.changeByName = this.changeByName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -63,16 +74,17 @@ export class Letter extends React.Component {
   }
 
   onSubmit(event) {
-    got("/send", {
+    got("/api/send", {
       body: {
         message: this.state.message,
         zip: this.state.zipCode,
+        address_line1: this.state.address,
         name: this.state.name
       },
       json: true
     })
-      .then(foo => {
-        console.log(foo); //TODO
+      .then(response => {
+        console.log(response); //TODO
       })
       .catch(console.error);
   }
