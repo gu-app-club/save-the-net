@@ -1,4 +1,4 @@
-const zipcodes = require("./utils/zipcodes");
+const zipcodes = require("zipcodes2016");
 const representatives = require("./utils/representatives");
 const templateMessage = require("fs")
   .readFileSync("./backend/templates/net-neutrality-message.html")

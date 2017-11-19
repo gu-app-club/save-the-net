@@ -5897,6 +5897,8 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-zipcodes@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/zipcodes/-/zipcodes-5.1.0.tgz#3d26e198a4343891d2a6276569106f753f19f3bf"
+zipcodes2016@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/zipcodes2016/-/zipcodes2016-1.0.0.tgz#2c7f2549d33ec9042d85aede2c84d627f8233cf0"
+  dependencies:
+    jest "^21.2.1"
