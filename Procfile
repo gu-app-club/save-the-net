@@ -1,1 +1,1 @@
-web: yarn build && PORT=80 yarn start
+web: yarn prod
