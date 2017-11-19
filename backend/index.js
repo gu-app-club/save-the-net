@@ -74,10 +74,23 @@ function send(request, response) {
     address_state: zipinfo.state,
     address_country: "US",
     message: request.body.message,
-    token: request.body.token
+    token: request.body.token,
+    reps: Array(2)
   };
 
-  payment.purchase(100, requestData.token);
+  let purchase = payment.purchase(
+    100 * requestData.reps.length,
+    requestData.token
+  );
+
+  if (purchase.error) {
+    console.log(error);
+    response.send({
+      success: false,
+      message: "Could not charge card."
+    });
+    return;
+  }
 
   let reps = representatives.lookup(requestData.address_zip);
 

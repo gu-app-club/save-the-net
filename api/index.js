@@ -11,10 +11,19 @@ export const sendLetter = (message, zip, address_line1, name, token) => {
     },
     json: true
   }).then(response => {
-    if (!new Bool(response.body.success)) {
+    if (response.body.success) {
       return { data: false, err: response.body.message };
     }
 
+    return { data: response.body, err: false };
+  });
+};
+
+export const getReps = zipcode => {
+  return got("/api/getrep/" + zipcode).then(response => {
+    if (response.body.success) {
+      return { data: false, err: response.body.message };
+    }
     return { data: response.body, err: false };
   });
 };

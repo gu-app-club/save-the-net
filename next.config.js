@@ -1,10 +1,18 @@
 module.exports = {
-  webpack: (config) => {
+  webpack: config => {
     // Fixes npm packages that depend on `fs` module
     config.node = {
-      fs: 'empty'
-    }
+      fs: "empty"
+    };
 
-    return config
+    config.plugins = config.plugins.filter(plugin => {
+      if (plugin.constructor.name === "UglifyJsPlugin") {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    return config;
   }
-}
+};
