@@ -28,7 +28,7 @@ const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;
 
 let StatelessLetter = props => (
   <Column>
-    <h1>Let's do this.</h1>
+    <h1>{"Let's do this."}</h1>
     <Input
       name="name"
       type="text"
