@@ -3,8 +3,8 @@ const server = require("../../backend/server");
 
 jest.setTimeout(60000);
 
-describe("Test the root path", () => {
-  test("It should response the GET method", async () => {
+describe("Testing /api/send", () => {
+  test("Testing /api/send", async () => {
     const response = await request(server)
       .post("/api/send")
       .send({
@@ -16,69 +16,30 @@ describe("Test the root path", () => {
       .type("json");
 
     expect(JSON.parse(response.text)).toMatchObject({
-      success: true,
       reps: [
         {
-          name: "Suzanne Bonamici",
-          address: {
-            address_zip: "20003",
-            address_line1: "439 Cannon House Office Building",
-            address_line2: "27 Independence Ave SE",
-            address_city: "Washington",
-            address_state: "DC",
-            address_country: "US"
-          },
-          phone: "202-225-0855"
-        },
-        {
+          address: [
+            {
+              city: "Washington",
+              line1: "2185 Rayburn House Office Building",
+              state: "DC",
+              zip: "20515"
+            }
+          ],
+          channels: [
+            { id: "repgregwalden", type: "Facebook" },
+            { id: "repgregwalden", type: "Twitter" },
+            { id: "RepGregWalden", type: "YouTube" },
+            { id: "108852759737967625278", type: "GooglePlus" }
+          ],
           name: "Greg Walden",
-          address: {
-            address_zip: "20003",
-            address_line1: "2185 Cannon House Office Building",
-            address_line2: "27 Independence Ave SE",
-            address_city: "Washington",
-            address_state: "DC",
-            address_country: "US"
-          },
-          phone: "202-225-6730"
-        },
-        {
-          name: "Earl Blumenauer",
-          address: {
-            address_zip: "20515",
-            address_line1: "1111 Longworth House Office Building",
-            address_line2: "9 Independence Ave SE",
-            address_city: "Washington",
-            address_state: "DC",
-            address_country: "US"
-          },
-          phone: "202-225-4811"
-        },
-        {
-          name: "Peter DeFazio",
-          address: {
-            address_zip: "20003",
-            address_line1: "2134 Cannon House Office Building",
-            address_line2: "27 Independence Ave SE",
-            address_city: "Washington",
-            address_state: "DC",
-            address_country: "US"
-          },
-          phone: "202-225-6416"
-        },
-        {
-          name: "Kurt Schrader",
-          address: {
-            address_zip: "20003",
-            address_line1: "2431 Cannon House Office Building",
-            address_line2: "27 Independence Ave SE",
-            address_city: "Washington",
-            address_state: "DC",
-            address_country: "US"
-          },
-          phone: "202-225-5711"
+          party: "Republican",
+          phones: ["(202) 225-6730"],
+          photoUrl: "http://bioguide.congress.gov/bioguide/photo/W/W000791.jpg",
+          urls: ["http://walden.house.gov/"]
         }
-      ]
+      ],
+      success: true
     });
   });
 });

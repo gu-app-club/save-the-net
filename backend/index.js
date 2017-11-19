@@ -1,34 +1,25 @@
 const zipcodes = require("./utils/zipcodes");
+const representatives = require("./utils/representatives");
 const templateMessage = require("fs")
   .readFileSync("./backend/templates/net-neutrality-message.html")
   .toString();
 const templateNoMessage = require("fs")
   .readFileSync("./backend/templates/net-neutrality-no-message.html")
   .toString();
-const states = require("./rep.json");
 const Lob = require("lob")("test_7baea6cc03130384038e90b624d4a3a11b1");
-
-function getReps(state) {
-  for (let s of states) {
-    if (s.name == state) {
-      return s.reps;
-    }
-  }
-}
 
 function lob(user, rep) {
   let response = null;
-
   Lob.letters.create(
     {
       description: user.name,
       to: {
         name: rep.name,
-        address_zip: rep.address.address_zip,
-        address_line1: rep.address.address_line1,
-        address_line2: rep.address.address_line2,
-        address_city: rep.address.address_city,
-        address_state: rep.address.address_state,
+        address_zip: rep.address[0].zip,
+        address_line1: rep.address[0].line1,
+        address_line2: rep.address[0].line2 || "",
+        address_city: rep.address[0].city,
+        address_state: rep.address[0].state,
         address_country: "US"
       },
       from: {
@@ -61,6 +52,7 @@ function lob(user, rep) {
 }
 
 function send(request, response) {
+  representatives.lookup(request.body.zip);
   let zipinfo = zipcodes.lookup(request.body.zip);
   console.log(request.body);
   if (!zipinfo) {
@@ -83,7 +75,7 @@ function send(request, response) {
     message: request.body.message
   };
 
-  let reps = getReps(requestData.address_state);
+  let reps = representatives.lookup(requestData.address_zip);
 
   if (!reps) {
     console.log("Could not locate reps from " + requestData.address_state);
@@ -115,6 +107,5 @@ function send(request, response) {
 }
 module.exports = {
   send,
-  lob,
-  getReps
+  lob
 };
