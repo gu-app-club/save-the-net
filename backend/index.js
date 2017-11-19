@@ -8,6 +8,8 @@ const templateNoMessage = require("fs")
   .toString();
 const Lob = require("lob")("test_7baea6cc03130384038e90b624d4a3a11b1");
 
+const payment = require("./utils/payment");
+
 function lob(user, rep) {
   let response = null;
   Lob.letters.create(
@@ -71,8 +73,11 @@ function send(request, response) {
     address_city: zipinfo.city,
     address_state: zipinfo.state,
     address_country: "US",
-    message: request.body.message
+    message: request.body.message,
+    token: request.body.token
   };
+
+  payment.purchase(100, requestData.token);
 
   let reps = representatives.lookup(requestData.address_zip);
 

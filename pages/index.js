@@ -3,6 +3,7 @@ import Head from "../components/head";
 import { Letter } from "../components/letter";
 import styled, { injectGlobal, ThemeProvider } from "styled-components";
 import theme from "../theme";
+import { StripeProvider } from "react-stripe-elements-universal";
 
 // Base CSS
 injectGlobal`
@@ -43,7 +44,9 @@ export default () => (
   <ThemeProvider theme={theme}>
     <Centered>
       <Head title="Home" />
-      <Letter />
+      <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
+        <Letter />
+      </StripeProvider>
     </Centered>
   </ThemeProvider>
 );
