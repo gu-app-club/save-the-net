@@ -26,7 +26,7 @@ const Column = Card.extend`
 
 const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;
 
-const StatelessLetter = props => (
+let StatelessLetter = props => (
   <Column>
     <h1>Let's do this.</h1>
     <Input
@@ -102,6 +102,9 @@ const StatelessLetter = props => (
     {props.err && <ErrText> {props.err} </ErrText>}
   </Column>
 );
+
+// Make sure we can use stripe
+StatelessLetter = injectStripe(StatelessLetter);
 
 export class Letter extends React.Component {
   constructor(props) {
