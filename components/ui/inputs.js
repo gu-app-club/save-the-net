@@ -9,7 +9,8 @@ export const Input = styled.input`
   border-width: 1px;
   line-height: 24px;
   border-style: solid;
-  border-color: ${props => props.theme.colors.border};
+  border-color: ${props =>
+    props.problem ? props.theme.colors.danger : props.theme.colors.border};
   border-image: initial;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: ${props => props.theme.fontSizes.regular};
@@ -25,7 +26,8 @@ export const TextArea = styled.textarea`
   border-width: 1px;
   line-height: 24px;
   border-style: solid;
-  border-color: ${props => props.theme.colors.border};
+  border-color: ${props =>
+    props.problem ? props.theme.colors.danger : props.theme.colors.border};
   border-image: initial;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: ${props => props.theme.fontSizes.regular};
