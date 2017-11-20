@@ -3,10 +3,15 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+<<<<<<< HEAD
     "start": "next start",
     "test": "jest",
     "prod":
       "yarn install && next build && NODE_ENV='production' PORT='80' node server.js"
+=======
+    "start": "NODE_ENV=production node server.js",
+    "test": "jest"
+>>>>>>> b9d87f94f36334c1d280e4a8a201614715076e27
   },
   "dependencies": {
     "babel-jest": "^21.2.0",
