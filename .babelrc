@@ -1,10 +1,34 @@
 {
-  "presets": ["next/babel", "es2015", "react"],
-  "plugins": [
-    [
-      "styled-components",
-      { "ssr": true, "displayName": true, "preprocess": false }
-    ],
-    ["transform-class-properties"]
-  ]
+  "env": {
+    "development": {
+      "presets": "next/babel",
+      "plugins": [
+        [
+          "styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ],
+        ["transform-class-properties"]
+      ]
+    },
+    "production": {
+      "presets": "next/babel",
+      "plugins": [
+        [
+          "styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ],
+        ["transform-class-properties"]
+      ]
+    },
+    "test": {
+      "presets": [["env", { "modules": "commonjs" }], "next/babel"],
+      "plugins": [
+        [
+          "styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ],
+        ["transform-class-properties"]
+      ]
+    }
+  }
 }

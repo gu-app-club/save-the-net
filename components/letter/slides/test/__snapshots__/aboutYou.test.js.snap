@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`about you renders correctly with errors 1`] = `
+<div>
+  <h1>
+    Tell us about you.
+  </h1>
+  <div
+    className="inputs__TextGrouping-eera57-1 jqxINf"
+  >
+    <label
+      className="inputs__Label-eera57-0 hyeqUX"
+      htmlFor="name-input"
+    >
+      Name
+       
+    </label>
+    <input
+      className="inputs__Input-s1jrjbv6-0 cEReDj"
+      id="name-input"
+      name="name"
+      onChange={undefined}
+      placeholder="George Washington"
+      type="text"
+      value="George"
+    />
+  </div>
+  <div
+    className="inputs__TextGrouping-eera57-1 jqxINf"
+  >
+    <label
+      className="inputs__Label-eera57-0 hyeqUX"
+      htmlFor="zipCode-input"
+    >
+      Zip Code
+       
+    </label>
+    <input
+      className="inputs__Input-s1jrjbv6-0 igCRQP"
+      id="zipCode-input"
+      name="zipCode"
+      onChange={undefined}
+      placeholder="90210"
+      type="number"
+      value={83702}
+    />
+  </div>
+  <button
+    className="hukf77-0-buttons__Button-kzywbL iRrNVV"
+    onClick={undefined}
+  >
+     Next 
+  </button>
+</div>
+`;
+
+exports[`about you renders correctly without errors 1`] = `
+<div>
+  <h1>
+    Tell us about you.
+  </h1>
+  <div
+    className="inputs__TextGrouping-eera57-1 jqxINf"
+  >
+    <label
+      className="inputs__Label-eera57-0 hyeqUX"
+      htmlFor="name-input"
+    >
+      Name
+       
+    </label>
+    <input
+      className="inputs__Input-s1jrjbv6-0 igCRQP"
+      id="name-input"
+      name="name"
+      onChange={undefined}
+      placeholder="George Washington"
+      type="text"
+      value="George"
+    />
+  </div>
+  <div
+    className="inputs__TextGrouping-eera57-1 jqxINf"
+  >
+    <label
+      className="inputs__Label-eera57-0 hyeqUX"
+      htmlFor="zipCode-input"
+    >
+      Zip Code
+       
+    </label>
+    <input
+      className="inputs__Input-s1jrjbv6-0 igCRQP"
+      id="zipCode-input"
+      name="zipCode"
+      onChange={undefined}
+      placeholder="90210"
+      type="number"
+      value={83702}
+    />
+  </div>
+  <button
+    className="hukf77-0-buttons__Button-kzywbL iRrNVV"
+    onClick={undefined}
+  >
+     Next 
+  </button>
+</div>
+`;
