@@ -13,23 +13,7 @@ import AboutYou from "./slides/aboutYou";
 import WriteYourLetter from "./slides/writeYourLetter";
 import Payment from "./slides/payment";
 import Slides from "./slides";
-
-const Column = Card.extend`
-  display: flex;
-  flex-direction: column;
-  min-width: 600px;
-`;
-
-const TextGrouping = styled.div`
-  width: 100%;
-  margin-bottom: ${props => props.theme.spacing.padding};
-`;
-
-const Label = styled.label`
-  width: 100%;
-  display: flex;
-  margin-bottom: ${props => props.theme.spacing.lessPadding};
-`;
+import Complete from "./complete";
 
 export class Letter extends React.Component {
   constructor(props) {
@@ -113,18 +97,7 @@ export class Letter extends React.Component {
 
   render() {
     if (this.state.complete) {
-      return (
-        <Column>
-          <TextGrouping>
-            <Label>
-              {`Thank you, your letter to ${this.state.chosenRep
-                .name} has been sent.`}
-            </Label>
-            <hr />
-            <Label>{`You have been charged $1.50.`}</Label>
-          </TextGrouping>
-        </Column>
-      );
+      return <Complete chosenRep={this.state.chosenRep} />;
     }
     return (
       <Elements>
