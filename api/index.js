@@ -12,7 +12,7 @@ export const sendLetter = (message, zip, address_line1, name, token, reps) => {
     },
     json: true
   }).then(response => {
-    if (response.body.success) {
+    if (!response.body.success) {
       return { data: false, err: response.body.message };
     }
 

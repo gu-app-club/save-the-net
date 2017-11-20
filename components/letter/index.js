@@ -14,6 +14,23 @@ import WriteYourLetter from "./slides/writeYourLetter";
 import Payment from "./slides/payment";
 import Slides from "./slides";
 
+const Column = Card.extend`
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+`;
+
+const TextGrouping = styled.div`
+  width: 100%;
+  margin-bottom: ${props => props.theme.spacing.padding};
+`;
+
+const Label = styled.label`
+  width: 100%;
+  display: flex;
+  margin-bottom: ${props => props.theme.spacing.lessPadding};
+`;
+
 export class Letter extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +44,9 @@ export class Letter extends React.Component {
       err: "",
       slide: 0,
       reps: [],
-      chosenRep: {}
+      chosenRep: {},
+      complete: false,
+      receipt: {}
     };
     this.changeByName = this.changeByName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -72,6 +91,8 @@ export class Letter extends React.Component {
             this.setState({ err });
             return;
           }
+          console.log(data);
+          this.setState({ receipt: data, complete: true });
         });
       }
     });
@@ -91,6 +112,20 @@ export class Letter extends React.Component {
   }
 
   render() {
+    if (this.state.complete) {
+      return (
+        <Column>
+          <TextGrouping>
+            <Label>
+              {`Thank you, your letter to ${this.state.chosenRep
+                .name} has been sent.`}
+            </Label>
+            <hr />
+            <Label>{`You have been charged $1.50.`}</Label>
+          </TextGrouping>
+        </Column>
+      );
+    }
     return (
       <Elements>
         <Slides
