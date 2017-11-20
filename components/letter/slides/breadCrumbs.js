@@ -1,11 +1,30 @@
+import styled from "styled-components";
+
+const LinkLikeButton = styled.button`
+  border: 0;
+  background: ${props =>
+    props.active
+      ? props.theme.colors.lightPrimary
+      : props.theme.colors.background};
+  cursor: pointer;
+  padding: ${props => props.theme.spacing.padding};
+  border-radius: ${props => props.theme.borderRadius};
+  font-family: ${props => props.theme.font};
+  font-size: ${props => props.theme.fontSizes.regular};
+
+  &:hover {
+    background: ${props => props.theme.colors.lightPrimary};
+  }
+`;
+
 const Crumb = ({ onSlideChange, slide, index }) => (
-  <a
+  <LinkLikeButton
     onClick={() => {
       onSlideChange(null, index);
     }}
   >
     {slide.label}
-  </a>
+  </LinkLikeButton>
 );
 
 const BreadCrumbs = props => (
@@ -17,7 +36,6 @@ const BreadCrumbs = props => (
           index={index}
           onSlideChange={props.onSlideChange}
         />
-        {" - "}
       </span>
     ))}
   </p>

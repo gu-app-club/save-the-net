@@ -24,8 +24,6 @@ const AboutYou = props => (
       problem={props.problems.includes("zipCode")}
     />
 
-    <BreadCrumbs slides={props.slides} onSlideChange={props.onSlideChange} />
-
     <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
   </div>
 );

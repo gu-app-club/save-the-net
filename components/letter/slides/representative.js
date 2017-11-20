@@ -70,8 +70,6 @@ const WriteYourLetter = props => (
       onNextSlide={props.onNextSlide}
       onRepChoice={props.onRepChoice}
     />
-
-    <BreadCrumbs slides={props.slides} onSlideChange={props.onSlideChange} />
   </div>
 );
 

@@ -1,6 +1,5 @@
 import { Input, TextArea } from "../../inputs";
 import { PrimaryButton } from "../../ui/buttons";
-import BreadCrumbs from "./breadCrumbs";
 
 const WriteYourLetter = props => (
   <div>
@@ -23,8 +22,6 @@ const WriteYourLetter = props => (
       onChange={props.onChange}
       problem={props.problems.includes("message")}
     />
-
-    <BreadCrumbs slides={props.slides} onSlideChange={props.onSlideChange} />
 
     <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
   </div>

@@ -11,7 +11,7 @@ export default {
     darkDanger: "#c0392b",
 
     // Lighter versions
-    lightPrimary: "#F5E8FA",
+    lightPrimary: "#CFECFF",
 
     // Background
     background: "#FAFBFC",

@@ -4,6 +4,7 @@ import WriteYourLetter from "./writeYourLetter";
 import Card from "../../ui/card";
 import styled from "styled-components";
 import Representative from "./representative";
+import BreadCrumbs from "./breadCrumbs";
 
 const Column = Card.extend`
   display: flex;
@@ -37,9 +38,15 @@ class Slides extends React.Component {
     const Component = SlideOrders[this.props.slideIndex].Component;
 
     return (
-      <Column>
-        <Component {...this.props} slides={SlideOrders} />
-      </Column>
+      <div>
+        <Column>
+          <Component {...this.props} slides={SlideOrders} />
+        </Column>
+        <BreadCrumbs
+          slides={SlideOrders}
+          onSlideChange={this.props.onSlideChange}
+        />
+      </div>
     );
   }
 }

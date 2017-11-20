@@ -34,8 +34,6 @@ const Payment = props => (
       />
     </div>
 
-    <BreadCrumbs slides={props.slides} onSlideChange={props.onSlideChange} />
-
     <PrimaryButton
       onClick={e => {
         props.onSubmit(e, props.stripe);
