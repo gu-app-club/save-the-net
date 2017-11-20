@@ -1,7 +1,6 @@
 const zipcodes = require("zipcodes2016");
 const representatives = require("./utils/representatives");
-const templateMessage = require("./templates/net-neutrality-message");
-const templateNoMessage = require("./templates/net-neutrality-no-message");
+const template = require("./templates/template");
 const Lob = require("lob")("test_7baea6cc03130384038e90b624d4a3a11b1");
 
 const payment = require("./utils/payment");
@@ -29,12 +28,14 @@ function lob(user, rep) {
         address_state: user.address_state,
         address_country: "US"
       },
-      file: user.message ? templateMessage : templateNoMessage,
+      file: template,
       merge_variables: {
         rep: rep.name,
         name: user.name,
         city: user.address_city,
-        message: user.message
+        message:
+          user.message ||
+          `I'm writing to express my disapproval that the FCC is trying to kill net neutrality and the strong Title II oversight of Internet Service Providers. Preserving an open internet is crucial for fair and equal access to the resources and information available on it.`
       },
       color: false
     },
@@ -69,7 +70,9 @@ function send(request, response) {
     address_city: zipinfo.city,
     address_state: zipinfo.state,
     address_country: "US",
-    message: request.body.message || "",
+    message:
+      request.body.message ||
+      "I'm writing to express my disapproval that the FCC is trying to kill net neutrality and the strong Title II oversight of Internet Service Providers. Preserving an open internet is crucial for fair and equal access to the resources and information available on it.",
     token: request.body.token || "",
     reps: request.body.reps || Array(0)
   };

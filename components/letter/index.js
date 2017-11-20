@@ -39,7 +39,8 @@ export class Letter extends React.Component {
     this.state = {
       name: "",
       zipCode: "",
-      message: "",
+      message:
+        "I'm writing to express my disapproval that the FCC is trying to kill net neutrality and the strong Title II oversight of Internet Service Providers. Preserving an open internet is crucial for fair and equal access to the resources and information available on it.",
       address: "",
       disabledButton: false,
       problems: [],
@@ -57,10 +58,10 @@ export class Letter extends React.Component {
     this.onRepChoice = this.onRepChoice.bind(this);
   }
 
-  showAlert(message) {
+  showAlert(message, type = "error") {
     this.msg.show(message, {
       time: 2000,
-      type: "error"
+      type: type
     });
   }
 
@@ -73,7 +74,9 @@ export class Letter extends React.Component {
       getReps(event.target.value).then(({ data, err }) => {
         if (err) {
           console.log(err);
+          this.onSlideChange(null, 0);
           this.showAlert(err);
+          this.setState({ reps: [] });
           return;
         }
         this.setState({ reps: data });
@@ -119,6 +122,41 @@ export class Letter extends React.Component {
   }
 
   onNextSlide(event) {
+    let error = false;
+    switch (this.state.slide) {
+      case 0:
+        if (this.state.zipCode.length != 5) {
+          this.showAlert("Invalid zipcode.");
+          error = true;
+        }
+        if (this.state.name.length == 0) {
+          this.showAlert("Please enter your name.");
+          error = true;
+        }
+        getReps(this.state.zipCode).then(({ data, err }) => {
+          if (err) {
+            console.log(err);
+            this.onSlideChange(null, 0);
+            this.showAlert(err);
+            this.setState({ reps: [] });
+            return;
+          }
+          this.setState({ reps: data });
+        });
+        break;
+      case 2:
+        if (this.state.address.length == 0) {
+          this.showAlert("Please enter your address.");
+          error = true;
+        }
+        if (this.state.message.length == 0) {
+          this.showAlert(
+            "😶 Looks like there's no message! We'll just use the usual one.",
+            "info"
+          );
+        }
+    }
+    if (error) return;
     const nextSlide = this.state.slide + 1;
     this.onSlideChange(event, nextSlide);
   }
