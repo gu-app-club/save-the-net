@@ -131,7 +131,6 @@ export class Letter extends React.Component {
         } else {
           getReps(this.state.zipCode).then(({ data, err }) => {
             if (err) {
-              console.log(err);
               this.onSlideChange(null, 0);
               this.showAlert(err);
               this.setState({ reps: [] });
@@ -187,6 +186,7 @@ export class Letter extends React.Component {
             name={this.state.name}
             zipCode={this.state.zipCode}
             message={this.state.message}
+            address={this.state.address}
             onChange={this.changeByName}
             onSubmit={this.onSubmit}
             disabled={this.state.disabledButton}
