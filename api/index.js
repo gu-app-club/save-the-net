@@ -1,13 +1,14 @@
 import got from "got";
 
-export const sendLetter = (message, zip, address_line1, name, token) => {
+export const sendLetter = (message, zip, address_line1, name, token, reps) => {
   return got("/api/send", {
     body: {
       message,
       zip,
       address_line1,
       name,
-      token
+      token,
+      reps
     },
     json: true
   }).then(response => {

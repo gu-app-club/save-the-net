@@ -13,13 +13,17 @@ function lookup(zipcode) {
         try {
           let indices = Array;
           for (let office of json.offices) {
-            if (office.name.indexOf("Representatives") > -1) {
+            if (
+              office.name.indexOf("Representatives") > -1 ||
+              office.name.indexOf("Senate") > -1
+            ) {
               indices = office.officialIndices;
               break;
             }
           }
           if (!indices.length) {
             wait = false;
+            return;
           }
           for (let index of indices) {
             result.push(json.officials[index]);

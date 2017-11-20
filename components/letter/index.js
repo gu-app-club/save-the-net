@@ -65,7 +65,8 @@ export class Letter extends React.Component {
           this.state.zipCode,
           this.state.address,
           this.state.name,
-          token.id
+          token.id,
+          this.state.reps
         ).then(({ data, err }) => {
           if (err) {
             this.setState({ err });

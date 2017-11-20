@@ -69,13 +69,53 @@ function send(request, response) {
     address_city: zipinfo.city,
     address_state: zipinfo.state,
     address_country: "US",
-    message: request.body.message,
-    token: request.body.token,
-    reps: Array(2)
+    message: request.body.message || "",
+    token: request.body.token || "",
+    reps: request.body.reps || Array(0)
   };
 
+  if (!requestData.reps.length) {
+    response.send({
+      success: false,
+      message: "No representatives selected."
+    });
+    return;
+  }
+
+  if (!requestData.name.length) {
+    response.send({
+      success: false,
+      message: "Name cannot be empty."
+    });
+    return;
+  }
+
+  let allReps = representatives.lookup(requestData.address_zip);
+  if (!allReps) {
+    console.log("Could not locate reps from " + requestData.address_state);
+    response.send({
+      success: false,
+      message: "Could not locate reps from " + requestData.address_state
+    });
+    return;
+  }
+
+  let reps = allReps.filter(function(r) {
+    for (let rep of requestData.reps) {
+      if (rep.name == r.name) return r;
+    }
+  });
+
+  if (!reps.length) {
+    response.send({
+      success: false,
+      message: "No representatives selected."
+    });
+    return;
+  }
+
   let purchase = payment.purchase(
-    100 * requestData.reps.length,
+    150 * requestData.reps.length,
     requestData.token
   );
 
@@ -83,18 +123,7 @@ function send(request, response) {
     console.log(purchase.error);
     response.send({
       success: false,
-      message: "Could not charge card."
-    });
-    return;
-  }
-
-  let reps = representatives.lookup(requestData.address_zip);
-
-  if (!reps) {
-    console.log("Could not locate reps from " + requestData.address_state);
-    response.send({
-      success: false,
-      message: "Could not locate reps from " + requestData.address_state
+      message: "Payment failed."
     });
     return;
   }
