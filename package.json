@@ -21,6 +21,7 @@
     "next": "^4.2.0-canary.1",
     "node-fetch": "^1.7.3",
     "react": "^16.1.1",
+    "react-alert": "^2.4.0",
     "react-dom": "^16.1.1",
     "react-stripe-elements-universal": "^1.2.0-3",
     "regenerator-runtime": "^0.11.0",
