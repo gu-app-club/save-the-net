@@ -29,15 +29,21 @@ const Crumb = ({ onSlideChange, slide, index }) => (
 
 const BreadCrumbs = props => (
   <p>
-    {props.slides.map((slide, index) => (
-      <span>
-        <Crumb
-          slide={slide}
-          index={index}
-          onSlideChange={props.onSlideChange}
-        />
-      </span>
-    ))}
+    {props.slides.map((slide, index) => {
+      if (index > props.maxSlide) {
+        return null;
+      }
+
+      return (
+        <span>
+          <Crumb
+            slide={slide}
+            index={index}
+            onSlideChange={props.onSlideChange}
+          />
+        </span>
+      );
+    })}
   </p>
 );
 

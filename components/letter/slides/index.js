@@ -45,6 +45,7 @@ class Slides extends React.Component {
         <BreadCrumbs
           slides={SlideOrders}
           onSlideChange={this.props.onSlideChange}
+          maxSlide={this.props.slideIndex}
         />
       </div>
     );
