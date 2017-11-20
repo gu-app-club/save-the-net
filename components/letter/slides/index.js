@@ -12,6 +12,11 @@ const Column = Card.extend`
   min-width: 600px;
 `;
 
+const AtBottom = styled.div`
+  position: absolute;
+  bottom: ${props => props.theme.spacing.padding};
+`;
+
 const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;
 
 const SlideOrders = [
@@ -42,11 +47,13 @@ class Slides extends React.Component {
         <Column>
           <Component {...this.props} slides={SlideOrders} />
         </Column>
-        <BreadCrumbs
-          slides={SlideOrders}
-          onSlideChange={this.props.onSlideChange}
-          maxSlide={this.props.slideIndex}
-        />
+        <AtBottom>
+          <BreadCrumbs
+            slides={SlideOrders}
+            onSlideChange={this.props.onSlideChange}
+            maxSlide={this.props.slideIndex}
+          />
+        </AtBottom>
       </div>
     );
   }
