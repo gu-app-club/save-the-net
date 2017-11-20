@@ -3,6 +3,7 @@ import AboutYou from "./aboutYou";
 import WriteYourLetter from "./writeYourLetter";
 import Card from "../../ui/card";
 import styled from "styled-components";
+import Representative from "./representative";
 
 const Column = Card.extend`
   display: flex;
@@ -16,6 +17,10 @@ const SlideOrders = [
   {
     Component: AboutYou,
     label: "About You"
+  },
+  {
+    Component: Representative,
+    label: "Representative"
   },
   {
     Component: WriteYourLetter,

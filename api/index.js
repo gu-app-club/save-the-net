@@ -24,6 +24,6 @@ export const getReps = zipcode => {
     if (response.body.success) {
       return { data: false, err: response.body.message };
     }
-    return { data: response.body, err: false };
+    return { data: JSON.parse(response.body), err: false };
   });
 };

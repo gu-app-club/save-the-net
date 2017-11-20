@@ -25,12 +25,15 @@ export class Letter extends React.Component {
       disabledButton: false,
       problems: [],
       err: "",
-      slide: 0
+      slide: 0,
+      reps: [],
+      chosenRep: {}
     };
     this.changeByName = this.changeByName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onSlideChange = this.onSlideChange.bind(this);
     this.onNextSlide = this.onNextSlide.bind(this);
+    this.onRepChoice = this.onRepChoice.bind(this);
   }
 
   changeByName(event) {
@@ -44,7 +47,7 @@ export class Letter extends React.Component {
           this.setState({ err });
           return;
         }
-        console.log(data);
+        this.setState({ reps: data });
       });
     }
   }
@@ -78,9 +81,12 @@ export class Letter extends React.Component {
   }
 
   onNextSlide(event) {
-    console.log("Hey");
     const nextSlide = this.state.slide + 1;
     this.onSlideChange(event, nextSlide);
+  }
+
+  onRepChoice(rep) {
+    this.setState({ chosenRep: rep });
   }
 
   render() {
@@ -98,6 +104,8 @@ export class Letter extends React.Component {
           slideIndex={this.state.slide}
           onSlideChange={this.onSlideChange}
           onNextSlide={this.onNextSlide}
+          onRepChoice={this.onRepChoice}
+          reps={this.state.reps}
         />
       </Elements>
     );
