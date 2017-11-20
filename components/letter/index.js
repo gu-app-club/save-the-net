@@ -13,7 +13,25 @@ import AboutYou from "./slides/aboutYou";
 import WriteYourLetter from "./slides/writeYourLetter";
 import Payment from "./slides/payment";
 import Slides from "./slides";
+import AlertContainer from "react-alert";
 import Complete from "./complete";
+
+const Column = Card.extend`
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+`;
+
+const TextGrouping = styled.div`
+  width: 100%;
+  margin-bottom: ${props => props.theme.spacing.padding};
+`;
+
+const Label = styled.label`
+  width: 100%;
+  display: flex;
+  margin-bottom: ${props => props.theme.spacing.lessPadding};
+`;
 
 export class Letter extends React.Component {
   constructor(props) {
@@ -39,6 +57,13 @@ export class Letter extends React.Component {
     this.onRepChoice = this.onRepChoice.bind(this);
   }
 
+  showAlert(message) {
+    this.msg.show(message, {
+      time: 2000,
+      type: "error"
+    });
+  }
+
   changeByName(event) {
     const change = {};
     change[event.target.name] = event.target.value;
@@ -47,7 +72,8 @@ export class Letter extends React.Component {
     if (event.target.name == "zipCode" && event.target.value.length >= 5) {
       getReps(event.target.value).then(({ data, err }) => {
         if (err) {
-          this.setState({ err });
+          console.log(err);
+          this.showAlert(err);
           return;
         }
         this.setState({ reps: data });
@@ -60,7 +86,13 @@ export class Letter extends React.Component {
       disabledButton: true
     });
 
-    stripe.createToken({ name: this.state.name }).then(({ token }) => {
+    stripe.createToken({ name: this.state.name }).then(({ token, error }) => {
+      if (error) {
+        this.showAlert(error.message);
+        this.setState({ disabledButton: false });
+
+        return;
+      }
       if (token) {
         console.log("Received Stripe token:", token);
         sendLetter(
@@ -72,7 +104,7 @@ export class Letter extends React.Component {
           [this.state.chosenRep]
         ).then(({ data, err }) => {
           if (err) {
-            this.setState({ err });
+            this.showAlert(err);
             return;
           }
           console.log(data);
@@ -101,21 +133,32 @@ export class Letter extends React.Component {
     }
     return (
       <Elements>
-        <Slides
-          name={this.state.name}
-          zipCode={this.state.zipCode}
-          message={this.state.message}
-          onChange={this.changeByName}
-          onSubmit={this.onSubmit}
-          disabled={this.state.disabledButton}
-          className="letter"
-          problems={this.state.problems}
-          slideIndex={this.state.slide}
-          onSlideChange={this.onSlideChange}
-          onNextSlide={this.onNextSlide}
-          onRepChoice={this.onRepChoice}
-          reps={this.state.reps}
-        />
+        <div>
+          <AlertContainer
+            ref={a => (this.msg = a)}
+            offset={14}
+            position={"top left"}
+            theme={"dark"}
+            time={5000}
+            transition={"scale"}
+          />
+
+          <Slides
+            name={this.state.name}
+            zipCode={this.state.zipCode}
+            message={this.state.message}
+            onChange={this.changeByName}
+            onSubmit={this.onSubmit}
+            disabled={this.state.disabledButton}
+            className="letter"
+            problems={this.state.problems}
+            slideIndex={this.state.slide}
+            onSlideChange={this.onSlideChange}
+            onNextSlide={this.onNextSlide}
+            onRepChoice={this.onRepChoice}
+            reps={this.state.reps}
+          />
+        </div>
       </Elements>
     );
   }
