@@ -14,6 +14,7 @@ import WriteYourLetter from "./slides/writeYourLetter";
 import Payment from "./slides/payment";
 import Slides from "./slides";
 import AlertContainer from "react-alert";
+import Complete from "./complete";
 
 const Column = Card.extend`
   display: flex;
@@ -128,18 +129,7 @@ export class Letter extends React.Component {
 
   render() {
     if (this.state.complete) {
-      return (
-        <Column>
-          <TextGrouping>
-            <Label>
-              {`Thank you, your letter to ${this.state.chosenRep
-                .name} has been sent.`}
-            </Label>
-            <hr />
-            <Label>{`You have been charged $1.50.`}</Label>
-          </TextGrouping>
-        </Column>
-      );
+      return <Complete chosenRep={this.state.chosenRep} />;
     }
     return (
       <Elements>

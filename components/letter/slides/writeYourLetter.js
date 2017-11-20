@@ -9,7 +9,7 @@ const WriteYourLetter = props => (
       type="text"
       placeholder="1600 Pennsylvania Ave NW, Washington, DC 20500"
       value={props.address}
-      label="Address"
+      label="Your Mailing Address"
       onChange={props.onChange}
       problem={props.problems.includes("address")}
     />
