@@ -41,19 +41,23 @@ const SlideOrders = [
 class Slides extends React.Component {
   render() {
     const Component = SlideOrders[this.props.slideIndex].Component;
-
+    let breadCrumbs = (
+      <BreadCrumbs
+        slides={SlideOrders}
+        onSlideChange={this.props.onSlideChange}
+        maxSlide={this.props.slideIndex}
+      />
+    );
+    if (this.props.disabled) {
+      breadCrumbs = <div />;
+    }
     return (
       <div>
         <Column>
           <Component {...this.props} slides={SlideOrders} />
         </Column>
-        <AtBottom>
-          <BreadCrumbs
-            slides={SlideOrders}
-            onSlideChange={this.props.onSlideChange}
-            maxSlide={this.props.slideIndex}
-          />
-        </AtBottom>
+
+        <AtBottom>{breadCrumbs}</AtBottom>
       </div>
     );
   }

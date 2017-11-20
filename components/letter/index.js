@@ -128,21 +128,23 @@ export class Letter extends React.Component {
         if (this.state.zipCode.length != 5) {
           this.showAlert("Invalid zipcode.");
           error = true;
+        } else {
+          getReps(this.state.zipCode).then(({ data, err }) => {
+            if (err) {
+              console.log(err);
+              this.onSlideChange(null, 0);
+              this.showAlert(err);
+              this.setState({ reps: [] });
+              return;
+            }
+            this.setState({ reps: data });
+          });
         }
         if (this.state.name.length == 0) {
           this.showAlert("Please enter your name.");
           error = true;
         }
-        getReps(this.state.zipCode).then(({ data, err }) => {
-          if (err) {
-            console.log(err);
-            this.onSlideChange(null, 0);
-            this.showAlert(err);
-            this.setState({ reps: [] });
-            return;
-          }
-          this.setState({ reps: data });
-        });
+
         break;
       case 2:
         if (this.state.address.length == 0) {
