@@ -25,7 +25,7 @@ const WriteYourLetter = props => (
       placeholder="Please support Net Neutrality..."
       value={props.message}
       name="message"
-      label="Message"
+      label="Message (under 500 chars)"
       onChange={props.onChange}
       problem={props.problems.includes("message")}
     />
