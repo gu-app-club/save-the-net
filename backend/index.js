@@ -7,6 +7,8 @@ const payment = require("./utils/payment");
 
 function lob(user, rep) {
   let response = null;
+
+  let message = user.message.replace(/['"]+/g, "");
   Lob.letters.create(
     {
       description: user.name,
@@ -34,7 +36,7 @@ function lob(user, rep) {
         name: user.name,
         city: user.address_city,
         message:
-          user.message ||
+          message ||
           `I'm writing to express my disapproval that the FCC is trying to kill net neutrality and the strong Title II oversight of Internet Service Providers. Preserving an open internet is crucial for fair and equal access to the resources and information available on it.`
       },
       color: false
@@ -92,6 +94,8 @@ function send(request, response) {
     });
     return;
   }
+
+  console.log("hello");
 
   representatives.lookup(requestData.address_zip).then(({ allReps, err }) => {
     if (err || !allReps.length) {
