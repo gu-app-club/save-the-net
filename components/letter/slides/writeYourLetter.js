@@ -1,9 +1,16 @@
 import { Input, TextArea } from "../../inputs";
-import { PrimaryButton } from "../../ui/buttons";
+import { PrimaryButton, SecondaryButton } from "../../ui/buttons";
+import styled from "styled-components";
+
+const H2 = styled.h2`
+  @media only screen and (min-width: 768px) {
+    margin-top: 0;
+  }
+`;
 
 const WriteYourLetter = props => (
   <div>
-    {!props.minimal && <h2> Let's make your letter. </h2>}
+    {!props.minimal && <H2> Let's make your letter. </H2>}
     <Input
       name="address"
       type="text"
@@ -22,9 +29,19 @@ const WriteYourLetter = props => (
       onChange={props.onChange}
       problem={props.problems.includes("message")}
     />
-
     {!props.minimal && (
-      <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
+      <div style={{ flexDirection: "row", display: "flex" }}>
+        <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
+
+        <SecondaryButton
+          onClick={() => {
+            props.onBackSlide();
+          }}
+          style={{ marginLeft: "auto" }}
+        >
+          Back
+        </SecondaryButton>
+      </div>
     )}
   </div>
 );

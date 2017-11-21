@@ -36,14 +36,13 @@ export const getReps = zipcode => {
         };
       }
 
-      let indices = Array;
+      let indices = Array(0);
       for (let office of json.offices) {
         if (
           office.name.indexOf("Representatives") > -1 ||
           office.name.indexOf("Senate") > -1
         ) {
-          indices = office.officialIndices;
-          break;
+          indices = indices.concat(office.officialIndices);
         }
       }
       if (!indices.length) {

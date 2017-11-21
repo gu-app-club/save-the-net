@@ -40,6 +40,25 @@ export const PrimaryButton = Button.extend`
   }
 `;
 
+export const SecondaryButton = Button.extend`
+  color: ${props => props.theme.colors.darkPrimary};
+  background: white;
+  font-size: 18px;
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${props => props.theme.colors.primary};
+  }
+
+  &:disabled {
+    color: ${props => props.theme.colors.border};
+  }
+
+  @media only screen and (max-width: 768px) {
+    background-color: #fafbfc;
+  }
+`;
+
 export const SuccessButton = Button.extend`
   background: ${props => props.theme.colors.darkSuccess};
   color: white;

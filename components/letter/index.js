@@ -1,6 +1,6 @@
 import got from "got";
 import { Input, TextArea } from "../inputs";
-import { PrimaryButton } from "../ui/buttons";
+import { PrimaryButton, SecondaryButton } from "../ui/buttons";
 import styled from "styled-components";
 import Card from "../ui/card";
 import { sendLetter, getReps } from "../../api";
@@ -15,6 +15,7 @@ import Payment from "./slides/payment";
 import Slides from "./slides";
 import AlertContainer from "react-alert";
 import Complete from "./complete";
+import Footer from "../footer";
 
 const TextGrouping = styled.div`
   width: 100%;
@@ -51,6 +52,7 @@ export class Letter extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onSlideChange = this.onSlideChange.bind(this);
     this.onNextSlide = this.onNextSlide.bind(this);
+    this.onBackSlide = this.onBackSlide.bind(this);
     this.onRepChoice = this.onRepChoice.bind(this);
   }
 
@@ -114,8 +116,18 @@ export class Letter extends React.Component {
   }
 
   onSlideChange(event, slide) {
-    if (slide > 0) this.props.changeShowInfo();
+    if (slide != 0) {
+      this.props.changeShowInfo(false);
+    } else {
+      this.props.changeShowInfo(true);
+    }
+
     this.setState({ slide: slide });
+  }
+
+  onBackSlide() {
+    const nextSlide = this.state.slide - 1;
+    this.onSlideChange(event, nextSlide);
   }
 
   onNextSlide(event) {
@@ -192,9 +204,12 @@ export class Letter extends React.Component {
             slideIndex={this.state.slide}
             onSlideChange={this.onSlideChange}
             onNextSlide={this.onNextSlide}
+            onBackSlide={this.onBackSlide}
             onRepChoice={this.onRepChoice}
             reps={this.state.reps}
           />
+
+          <Footer />
         </LetterContainer>
       </Elements>
     );

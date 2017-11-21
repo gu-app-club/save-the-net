@@ -1,5 +1,4 @@
-import { PrimaryButton } from "../../ui/buttons";
-import BreadCrumbs from "./breadCrumbs";
+import { PrimaryButton, SecondaryButton } from "../../ui/buttons";
 import styled from "styled-components";
 import Card from "../../ui/card";
 
@@ -13,6 +12,20 @@ const ProfilePic = styled.img`
     height: 188px;
     width: 188px;
     border-radius: 200px;
+  }
+`;
+const Div = styled.div`
+  flex-direction: row;
+  display: flex;
+  margin-bottom: -1em;
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 0.5em;
+  }
+`;
+const H2 = styled.h2`
+  @media only screen and (min-width: 768px) {
+    margin-top: 0;
   }
 `;
 
@@ -50,7 +63,7 @@ const Address = ({ address }) => (
 );
 
 const Rep = ({ rep, onNextSlide, onRepChoice }) => (
-  <Card>
+  <Card style={{ marginBottom: "1em" }}>
     <RepContainer>
       <ProfilePic src={rep.photoUrl} />
 
@@ -79,19 +92,28 @@ const Reps = ({ reps, onNextSlide, onRepChoice }) => {
   const repEls = reps.map(rep => (
     <Rep rep={rep} onNextSlide={onNextSlide} onRepChoice={onRepChoice} />
   ));
-
   return <div> {repEls} </div>;
 };
 
 const WriteYourLetter = props => (
   <div>
-    <h2> Who do you want to send it to? </h2>
+    <H2> Who do you want to send it to? </H2>
 
     <Reps
       reps={props.reps}
       onNextSlide={props.onNextSlide}
       onRepChoice={props.onRepChoice}
     />
+    <Div>
+      <SecondaryButton
+        onClick={() => {
+          props.onBackSlide();
+        }}
+        style={{ marginLeft: "auto" }}
+      >
+        Back
+      </SecondaryButton>
+    </Div>
   </div>
 );
 

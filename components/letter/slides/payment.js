@@ -1,15 +1,18 @@
 import { injectStripe, CardElement } from "react-stripe-elements-universal";
-import { PrimaryButton } from "../../ui/buttons";
-import BreadCrumbs from "./breadCrumbs";
+import { PrimaryButton, SecondaryButton } from "../../ui/buttons";
 import AboutYou from "./aboutYou";
 import WriteYourLetter from "./writeYourLetter";
 import styled from "styled-components";
 
 const HR = styled.hr`border: 1px solid ${props => props.theme.colors.border};`;
-
+const H2 = styled.h2`
+  @media only screen and (min-width: 768px) {
+    margin-top: 0;
+  }
+`;
 const Payment = props => (
   <div>
-    <h2>Here's a Recap: </h2>
+    <H2>Here's a Recap: </H2>
 
     <AboutYou {...props} minimal />
 
@@ -48,14 +51,29 @@ const Payment = props => (
       />
     </div>
 
-    <PrimaryButton
-      onClick={e => {
-        props.onSubmit(e, props.stripe);
-      }}
-      disabled={props.disabled ? "disabled" : ""}
-    >
-      {props.disabled ? "Hold on a moment..." : "Save the Internet!"}
-    </PrimaryButton>
+    <div style={{ flexDirection: "row", display: "flex" }}>
+      {!props.minimal && (
+        <PrimaryButton
+          onClick={e => {
+            props.onSubmit(e, props.stripe);
+          }}
+          disabled={props.disabled ? "disabled" : ""}
+        >
+          {props.disabled ? "Hold on a moment..." : "Save the Internet!"}
+        </PrimaryButton>
+      )}
+      <SecondaryButton
+        onClick={() => {
+          props.onBackSlide();
+        }}
+        style={{
+          display: props.disabled ? "none" : "block",
+          marginLeft: "auto"
+        }}
+      >
+        Back
+      </SecondaryButton>
+    </div>
   </div>
 );
 
