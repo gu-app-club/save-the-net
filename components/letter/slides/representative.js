@@ -63,7 +63,7 @@ const Reps = ({ reps, onNextSlide, onRepChoice }) => {
 
 const WriteYourLetter = props => (
   <div>
-    <h1> Who do you want to send it to? </h1>
+    <h2> Who do you want to send it to? </h2>
 
     <Reps
       reps={props.reps}

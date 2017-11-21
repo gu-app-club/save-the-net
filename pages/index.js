@@ -60,6 +60,21 @@ export default () => (
           <h1>
             On December 14th, the FCC may vote to change the internet forever.
           </h1>
+
+          <p>And not in a good way.</p>
+
+          <p>
+            They{"'"}re about to slash net neutrality rules that stop companies
+            like Comcast from slowing down your internet, holding apps like
+            Netflix at ransom and charging you fees control who gets to say what
+            online.
+          </p>
+
+          <h2>Want to help stop it?</h2>
+
+          <p>Send a letter. A real, physical snail-mail 📬 letter. </p>
+
+          <p>We've made this easy.</p>
         </NoCardSection>
 
         <Section>

@@ -3,7 +3,7 @@ import { PrimaryButton } from "../../ui/buttons";
 
 const WriteYourLetter = props => (
   <div>
-    <h1> Let's make your letter. </h1>
+    <h2> Let's make your letter. </h2>
     <Input
       name="address"
       type="text"

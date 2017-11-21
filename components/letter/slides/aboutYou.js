@@ -4,7 +4,7 @@ import BreadCrumbs from "./breadCrumbs";
 
 const AboutYou = props => (
   <div>
-    <h1>Tell us about you.</h1>
+    <h2>Tell us about you.</h2>
     <Input
       name="name"
       type="text"
