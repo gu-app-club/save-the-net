@@ -22,7 +22,7 @@ const Payment = props => (
     <div
       style={{
         borderRadius: "5px",
-        padding: "0px 16px 0px 16px",
+        padding: "0px 7px",
         height: "40px",
         backgroundColor: "white",
         color: "#071721",
@@ -43,7 +43,7 @@ const Payment = props => (
     >
       <CardElement
         style={{
-          base: { fontSize: "18px" }
+          base: { fontSize: "1.1em" }
         }}
       />
     </div>
