@@ -96,8 +96,8 @@ export default () => (
 
       <p>
         Yes. Cookies are small files that a site or its service provider
-        transfers to your computer's hard drive through your Web browser (if you
-        allow) that enables the site's or service provider's systems to
+        transfers to your computer{"'"}s hard drive through your Web browser (if you
+        allow) that enables the site's or service provider{"'"}s systems to
         recognize your browser and capture and remember certain information. For
         instance, we use cookies to help us remember and process the items in
         your shopping cart. They are also used to help us understand your
@@ -119,14 +119,14 @@ export default () => (
         You can choose to have your computer warn you each time a cookie is
         being sent, or you can choose to turn off all cookies. You do this
         through your browser settings. Since browser is a little different, look
-        at your browser's Help Menu to learn the correct way to modify your
+        at your browser{"'"}s Help Menu to learn the correct way to modify your
         cookies.&nbsp;
       </p>
 
       <p>
         If you turn cookies off, Some of the features that make your site
-        experience more efficient may not function properly.It won't affect the
-        user's experience that make your site experience more efficient and may
+        experience more efficient may not function properly.It won{"'"}t affect the
+        user{"'"}s experience that make your site experience more efficient and may
         not function properly.
       </p>
 
@@ -142,7 +142,7 @@ export default () => (
       <h2>Google</h2>
 
       <p>
-        Google's advertising requirements can be summed up by Google's
+        Google{"'"}s advertising requirements can be summed up by Google{"'"}s
         Advertising Principles. They are put in place to provide a positive
         experience for users.
         https://support.google.com/adwordspolicy/answer/1316548?hl=en&nbsp;
@@ -152,7 +152,7 @@ export default () => (
 
       <p>
         Google, as a third-party vendor, uses cookies to serve ads on our site.
-        Google's use of the DART cookie enables it to serve ads to our users
+        Google{"'"}s use of the DART cookie enables it to serve ads to our users
         based on previous visits to our site and other sites on the Internet.
         Users may opt-out of the use of the DART cookie by visiting the Google
         Ad and Content Network privacy policy.&nbsp;
@@ -182,7 +182,7 @@ export default () => (
 
       <p>
         CalOPPA is the first state law in the nation to require commercial
-        websites and online services to post a privacy policy. The law's reach
+        websites and online services to post a privacy policy. The law{"'"}s reach
         stretches well beyond California to require any person or company in the
         United States (and conceivably the world) that operates websites
         collecting Personally Identifiable Information from California consumers
@@ -217,7 +217,7 @@ export default () => (
 
       <h3>Does our site allow third-party behavioral tracking?&nbsp;</h3>
       <p>
-        It's also important to note that we allow third-party behavioral
+        It{"'"}s also important to note that we allow third-party behavioral
         tracking
       </p>
 
@@ -225,11 +225,11 @@ export default () => (
 
       <p>
         When it comes to the collection of personal information from children
-        under the age of 13 years old, the Children's Online Privacy Protection
+        under the age of 13 years old, the Children{"'"}s Online Privacy Protection
         Act (COPPA) puts parents in control. The Federal Trade Commission,
         United States' consumer protection agency, enforces the COPPA Rule,
         which spells out what operators of websites and online services must do
-        to protect children's privacy and safety online.&nbsp;
+        to protect children{"'"}s privacy and safety online.&nbsp;
       </p>
 
       <p>
