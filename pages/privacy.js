@@ -68,14 +68,13 @@ export default () => (
       </p>
 
       <h3>
-        What personal information do we collect from the people that visit our
-        blog, website or app?
+        What personal information do we collect from the people that visit?
       </h3>
 
       <p>
-        &nbsp;When ordering or registering on our site, as appropriate, you may
-        be asked to enter your name, mailing address, credit card information or
-        other details to help you with your experience.
+        &nbsp;When ordering our site, as appropriate, you may be asked to enter
+        your name, mailing address, credit card information or other details to
+        help you with your experience.
       </p>
 
       <h3>When do we collect information?</h3>
@@ -88,42 +87,9 @@ export default () => (
       <h3>How do we use your information?</h3>
 
       <p>
-        We may use the information we collect from you when you register, make a
-        purchase, sign up for our newsletter, respond to a survey or marketing
-        communication, surf the website, or use certain other site features in
-        the following ways:&nbsp;
-      </p>
-
-      <p>&nbsp; &nbsp; &nbsp; • To quickly process your transactions.</p>
-
-      <h3>How do we protect your information?</h3>
-
-      <p>
-        &nbsp; &nbsp; &nbsp; •Our website is scanned on a regular basis for
-        security holes and known vulnerabilities in order to make your visit to
-        our site as safe as possible.&nbsp;
-      </p>
-
-      <p>&nbsp; &nbsp; &nbsp; •We do not use Malware Scanning.&nbsp;</p>
-
-      <p>
-        &nbsp; &nbsp; &nbsp; •Your personal information is contained behind
-        secured networks and is only accessible by a limited number of persons
-        who have special access rights to such systems, and are required to keep
-        the information confidential. In addition, all sensitive/credit
-        information you supply is encrypted via Secure Socket Layer (SSL)
-        technology.
-      </p>
-
-      <p>
-        &nbsp; &nbsp; &nbsp; •We implement a variety of security measures when a
-        user places an order to maintain the safety of your personal
-        information.
-      </p>
-
-      <p>
-        &nbsp; &nbsp; &nbsp; •All transactions are processed through a gateway
-        provider and are not stored or processed on our servers.
+        Your credit card is instantly and securly tokenized by Stripe.com which
+        we then process using our server. After your purchase has processed we
+        use Lob.com to deliver your message to your selected representative.
       </p>
 
       <h3>Do we use 'cookies'?</h3>
