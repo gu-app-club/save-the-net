@@ -8,7 +8,7 @@ function purchase(price, token) {
     {
       amount: price,
       currency: "usd",
-      description: "Example charge",
+      description: "savethenet.today",
       source: token
     },
     function(err, charge) {
