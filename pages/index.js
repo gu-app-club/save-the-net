@@ -105,7 +105,7 @@ export default class extends React.Component {
                 </p>
 
                 <p>
-                  We've made this easy. For $1.50, you can send a letter in 2
+                  We{"'"}ve made this easy. For $1.50, you can send a letter in 2
                   minutes without ever leaving your house.
                 </p>
               </NoCardSection>
