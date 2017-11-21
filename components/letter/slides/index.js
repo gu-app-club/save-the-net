@@ -9,6 +9,9 @@ import BreadCrumbs from "./breadCrumbs";
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
+  @media only screen and (min-width: 768px) {
+    min-width: 500px;
+  }
 `;
 
 const AtBottom = styled.div`
