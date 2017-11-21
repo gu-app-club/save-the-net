@@ -29,11 +29,18 @@ body > div:first-child,
 
 html {
   box-sizing: border-box;
-  font-size: 1.4em;
+  font-size: 1.3em;
   font-weight: 300;
   letter-spacing: 0.01em;
-  line-height: 1.4;
+  line-height: 1.3;
 }
+`;
+
+const H1 = styled.h1`
+  @media only screen and (max-width: 768px) {
+    font-size: 1.7em;
+    margin-top: 0;
+  }
 `;
 
 const Section = styled.div`
@@ -78,12 +85,19 @@ export default class extends React.Component {
           <ContentContainer>
             {this.state.showInfo == true && (
               <NoCardSection>
-                <h1>
+                <H1>
                   On December 14th, the FCC may vote to change the internet
                   forever.
-                </h1>
+                </H1>
 
                 <p>And not in a good way.</p>
+
+                <p>
+                  They{"'"}re about to slash net neutrality rules that stop
+                  companies like Comcast from slowing down your internet,
+                  holding apps like Netflix and Youtube at ransom and charging
+                  you fees to control who gets to say what online.
+                </p>
 
                 <p>
                   Send a letter to your congress person. A real, physical
@@ -91,8 +105,8 @@ export default class extends React.Component {
                 </p>
 
                 <p>
-                  We've made this easy. For $1.50, you can send in 2 minutes
-                  without ever leaving your house.
+                  We've made this easy. For $1.50, you can send a letter in 2
+                  minutes without ever leaving your house.
                 </p>
               </NoCardSection>
             )}
