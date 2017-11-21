@@ -12,10 +12,10 @@ const Column = Card.extend`
 `;
 
 const AtBottom = styled.div`
-  position: absolute;
   bottom: 0;
 
   @media only screen and (min-width: 768px) {
+    position: absolute;
     bottom: ${props => props.theme.spacing.padding};
   }
 `;
