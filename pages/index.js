@@ -40,13 +40,23 @@ const Centered = styled.div`
   align-items: center;
 `;
 
+const ContentContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default () => (
   <ThemeProvider theme={theme}>
-    <Centered>
-      <Head title="Home" />
-      <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
-        <Letter />
-      </StripeProvider>
-    </Centered>
+    <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
+      <ContentContainer>
+        <Centered>
+          <Head title="Home" />
+          <Letter />
+        </Centered>
+      </ContentContainer>
+    </StripeProvider>
   </ThemeProvider>
 );

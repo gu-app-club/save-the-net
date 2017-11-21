@@ -19,7 +19,7 @@ import Complete from "./complete";
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
-  min-width: 600px;
+  min-width: 200px;
 `;
 
 const TextGrouping = styled.div`

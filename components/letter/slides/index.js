@@ -9,12 +9,15 @@ import BreadCrumbs from "./breadCrumbs";
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
-  min-width: 600px;
 `;
 
 const AtBottom = styled.div`
   position: absolute;
-  bottom: ${props => props.theme.spacing.padding};
+  bottom: 0;
+
+  @media only screen and (min-width: 768px) {
+    bottom: ${props => props.theme.spacing.padding};
+  }
 `;
 
 const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;

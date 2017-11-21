@@ -3,7 +3,9 @@ import Card from "../ui/card";
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
-  min-width: 600px;
+  @media only screen and (min-width: 768px) {
+    min-width: 500px;
+  }
 `;
 
 const Complete = props => (
