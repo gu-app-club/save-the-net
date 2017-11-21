@@ -66,6 +66,10 @@ export class Letter extends React.Component {
   changeByName(event) {
     const change = {};
     change[event.target.name] = event.target.value;
+    if (event.target.name === "message") {
+      change[event.target.name] = event.target.value.substring(0, 500);
+    }
+
     this.setState(change);
 
     if (event.target.name == "zipCode" && event.target.value.length >= 5) {
