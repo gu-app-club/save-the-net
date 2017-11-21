@@ -114,6 +114,7 @@ export class Letter extends React.Component {
   }
 
   onSlideChange(event, slide) {
+    if (slide > 0) this.props.changeShowInfo();
     this.setState({ slide: slide });
   }
 

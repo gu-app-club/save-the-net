@@ -43,7 +43,9 @@ const Section = styled.div`
 `;
 
 const NoCardSection = styled.div`
-  padding: ${props => props.theme.spacing.extraPadding};
+  padding: ${props => props.theme.spacing.extraPadding}
+    ${props => props.theme.spacing.extraPadding} 0
+    ${props => props.theme.spacing.extraPadding};
 `;
 
 const ContentContainer = styled.div`
@@ -56,42 +58,51 @@ const ContentContainer = styled.div`
   margin: 0 auto;
 `;
 
-export default () => (
-  <ThemeProvider theme={theme}>
-    <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
-      <ContentContainer>
-        <NoCardSection>
-          <h1>
-            On December 14th, the FCC may vote to change the internet forever.
-          </h1>
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showInfo: true
+    };
+    this.changeShowInfo = this._changeShowInfo.bind(this);
+  }
 
-          <p>And not in a good way.</p>
+  _changeShowInfo(value) {
+    this.setState({ showInfo: value });
+  }
 
-          <p>
-            They{"'"}re about to slash net neutrality rules that stop companies
-            like Comcast from slowing down your internet, holding apps like
-            Netflix at ransom and charging you fees control who gets to say what
-            online.
-          </p>
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
+          <ContentContainer>
+            {this.state.showInfo == true && (
+              <NoCardSection>
+                <h1>
+                  On December 14th, the FCC may vote to change the internet
+                  forever.
+                </h1>
 
-          <h2>Want to help stop it?</h2>
+                <p>And not in a good way.</p>
 
-          <p>
-            Send a letter to your congress person. A real, physical snail-mail
-            📬 letter.
-          </p>
+                <p>
+                  Send a letter to your congress person. A real, physical
+                  snail-mail 📬 letter.
+                </p>
 
-          <p>
-            We've made this easy. For $1.50 for shipping, you can send in 2
-            minutes without ever leaving your house.
-          </p>
-        </NoCardSection>
-
-        <Section>
-          <Head title="Home" />
-          <Letter />
-        </Section>
-      </ContentContainer>
-    </StripeProvider>
-  </ThemeProvider>
-);
+                <p>
+                  We've made this easy. For $1.50 for shipping, you can send in
+                  2 minutes without ever leaving your house.
+                </p>
+              </NoCardSection>
+            )}
+            <Section>
+              <Head title="Save the Net" />
+              <Letter changeShowInfo={this.changeShowInfo} />
+            </Section>
+          </ContentContainer>
+        </StripeProvider>
+      </ThemeProvider>
+    );
+  }
+}
