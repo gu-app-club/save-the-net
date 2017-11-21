@@ -7,6 +7,8 @@ const Card = styled.div`
   width: ${props => (props.expanded ? "100%" : "initial")};
   padding: ${props => props.theme.spacing.extraPadding};
   margin-bottom: ${props => props.theme.spacing.extraPadding};
+  margin-top: ${props => props.theme.spacing.extraPadding};
+
   box-sizing: border-box;
   overflow: hidden;
 `;
