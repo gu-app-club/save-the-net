@@ -176,8 +176,9 @@ export class Letter extends React.Component {
   }
 
   render() {
+    console.log(this.state.receipt);
     if (this.state.complete) {
-      return <Complete chosenRep={this.state.chosenRep} />;
+      return <Complete receipt={this.state.receipt} />;
     }
     return (
       <Elements>
