@@ -32,6 +32,18 @@ const Head = props => (
     <meta property="og:image:height" content="630" />
 
     <script src="https://js.stripe.com/v3/" />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-109986856-1"
+    />
+    <script>
+      {` window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109986856-1');`}
+    </script>
   </NextHead>
 );
 
