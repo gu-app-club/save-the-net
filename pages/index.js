@@ -32,30 +32,40 @@ html {
 }
 `;
 
-const Centered = styled.div`
+const Section = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+`;
+
+const NoCardSection = styled.div`
+  padding: ${props => props.theme.spacing.extraPadding};
 `;
 
 const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 export default () => (
   <ThemeProvider theme={theme}>
     <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
       <ContentContainer>
-        <Centered>
+        <NoCardSection>
+          <h1>
+            On December 14th, the FCC may vote to change the internet forever.
+          </h1>
+        </NoCardSection>
+
+        <Section>
           <Head title="Home" />
           <Letter />
-        </Centered>
+        </Section>
       </ContentContainer>
     </StripeProvider>
   </ThemeProvider>

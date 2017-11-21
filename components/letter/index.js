@@ -16,12 +16,6 @@ import Slides from "./slides";
 import AlertContainer from "react-alert";
 import Complete from "./complete";
 
-const Column = Card.extend`
-  display: flex;
-  flex-direction: column;
-  min-width: 200px;
-`;
-
 const TextGrouping = styled.div`
   width: 100%;
   margin-bottom: ${props => props.theme.spacing.padding};
@@ -32,6 +26,8 @@ const Label = styled.label`
   display: flex;
   margin-bottom: ${props => props.theme.spacing.lessPadding};
 `;
+
+const LetterContainer = styled.div`width: 100%;`;
 
 export class Letter extends React.Component {
   constructor(props) {
@@ -172,7 +168,7 @@ export class Letter extends React.Component {
     }
     return (
       <Elements>
-        <div>
+        <LetterContainer>
           <AlertContainer
             ref={a => (this.msg = a)}
             offset={14}
@@ -198,7 +194,7 @@ export class Letter extends React.Component {
             onRepChoice={this.onRepChoice}
             reps={this.state.reps}
           />
-        </div>
+        </LetterContainer>
       </Elements>
     );
   }

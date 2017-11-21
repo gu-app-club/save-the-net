@@ -9,16 +9,10 @@ import BreadCrumbs from "./breadCrumbs";
 const Column = Card.extend`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
-const AtBottom = styled.div`
-  bottom: 0;
-
-  @media only screen and (min-width: 768px) {
-    position: absolute;
-    bottom: ${props => props.theme.spacing.padding};
-  }
-`;
+const SlideContainer = styled.div`width: 100%;`;
 
 const ErrText = styled.p`color: ${props => props.theme.colors.danger};`;
 
@@ -55,13 +49,13 @@ class Slides extends React.Component {
       breadCrumbs = <div />;
     }
     return (
-      <div>
+      <SlideContainer>
         <Column>
           <Component {...this.props} slides={SlideOrders} />
         </Column>
 
-        <AtBottom>{breadCrumbs}</AtBottom>
-      </div>
+        <div>{breadCrumbs}</div>
+      </SlideContainer>
     );
   }
 }
