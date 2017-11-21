@@ -106,6 +106,7 @@ export class Letter extends React.Component {
         ).then(({ data, err }) => {
           if (err) {
             this.showAlert(err);
+            this.setState({ disabledButton: false });
             return;
           }
           console.log(data);
