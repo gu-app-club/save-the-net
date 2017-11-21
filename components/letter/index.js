@@ -125,7 +125,7 @@ export class Letter extends React.Component {
     this.setState({ slide: slide });
   }
 
-  onBackSlide() {
+  onBackSlide(event) {
     const nextSlide = this.state.slide - 1;
     this.onSlideChange(event, nextSlide);
   }
