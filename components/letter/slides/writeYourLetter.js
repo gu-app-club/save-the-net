@@ -3,7 +3,7 @@ import { PrimaryButton } from "../../ui/buttons";
 
 const WriteYourLetter = props => (
   <div>
-    <h2> Let's make your letter. </h2>
+    {!props.minimal && <h2> Let's make your letter. </h2>}
     <Input
       name="address"
       type="text"
@@ -23,7 +23,9 @@ const WriteYourLetter = props => (
       problem={props.problems.includes("message")}
     />
 
-    <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
+    {!props.minimal && (
+      <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
+    )}
   </div>
 );
 

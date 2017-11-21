@@ -1,10 +1,24 @@
 import { injectStripe, CardElement } from "react-stripe-elements-universal";
 import { PrimaryButton } from "../../ui/buttons";
 import BreadCrumbs from "./breadCrumbs";
+import AboutYou from "./aboutYou";
+import WriteYourLetter from "./writeYourLetter";
+import styled from "styled-components";
+
+const HR = styled.hr`border: 1px solid ${props => props.theme.colors.border};`;
 
 const Payment = props => (
   <div>
-    <h1>Let's do this.</h1>
+    <h2>Here's a Recap: </h2>
+
+    <AboutYou {...props} minimal />
+
+    <WriteYourLetter {...props} minimal />
+
+    <HR />
+
+    <h2> Let's do this. </h2>
+
     <div
       style={{
         borderRadius: "5px",

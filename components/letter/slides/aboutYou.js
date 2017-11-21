@@ -4,7 +4,7 @@ import BreadCrumbs from "./breadCrumbs";
 
 const AboutYou = props => (
   <div>
-    <h2>Ready? Lets get some info.</h2>
+    {!props.minimal && <h2>Ready? Lets get some info.</h2>}
     <Input
       name="name"
       type="text"
@@ -24,7 +24,9 @@ const AboutYou = props => (
       problem={props.problems.includes("zipCode")}
     />
 
-    <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
+    {!props.minimal && (
+      <PrimaryButton onClick={props.onNextSlide}> Next </PrimaryButton>
+    )}
   </div>
 );
 

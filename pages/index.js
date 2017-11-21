@@ -82,8 +82,8 @@ export default () => (
           </p>
 
           <p>
-            We've made this easy. For $1.50 for shipping, you can send in 2
-            minutes without ever leaving your house.
+            We've made this easy. For $1.50, you can send in 2 minutes without
+            ever leaving your house.
           </p>
         </NoCardSection>
 
