@@ -19,7 +19,7 @@ const RepInfoContainer = styled.div`
   margin-left: ${props => props.theme.spacing.padding};
 `;
 
-const RepTitle = styled.h2``;
+const RepTitle = styled.h2`margin: 0;`;
 
 const Address = ({ address }) => (
   <div>

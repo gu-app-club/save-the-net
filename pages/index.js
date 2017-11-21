@@ -29,6 +29,10 @@ body > div:first-child,
 
 html {
   box-sizing: border-box;
+  font-size: 1.4em;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
 }
 `;
 
@@ -48,7 +52,7 @@ const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 `;
 
@@ -72,9 +76,15 @@ export default () => (
 
           <h2>Want to help stop it?</h2>
 
-          <p>Send a letter. A real, physical snail-mail 📬 letter. </p>
+          <p>
+            Send a letter to your congress person. A real, physical snail-mail
+            📬 letter.
+          </p>
 
-          <p>We've made this easy.</p>
+          <p>
+            We've made this easy. For $1.50 for shipping, you can send in 2
+            minutes without ever leaving your house.
+          </p>
         </NoCardSection>
 
         <Section>
