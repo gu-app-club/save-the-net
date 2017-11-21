@@ -1,49 +1,48 @@
-const fetch = require("node-fetch");
+const got = require("got");
 
-function lookup(zipcode) {
-  const url =
-    "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAJeOUUNN_QwQNUwuj1nK2WkywtIL2EQ5s&address=" +
-    zipcode;
-
+const lookup = zipcode => {
   let result = new Array();
-  let wait = true;
-  fetch(url)
+
+  return got(
+    "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAJeOUUNN_QwQNUwuj1nK2WkywtIL2EQ5s&address=" +
+      zipcode
+  )
     .then(response => {
-      response.json().then(json => {
-        try {
-          let indices = Array;
-          for (let office of json.offices) {
-            if (
-              office.name.indexOf("Representatives") > -1 ||
-              office.name.indexOf("Senate") > -1
-            ) {
-              indices = office.officialIndices;
-              break;
-            }
-          }
-          if (!indices.length) {
-            wait = false;
-            return;
-          }
-          for (let index of indices) {
-            result.push(json.officials[index]);
-          }
-          wait = false;
-        } catch (error) {
-          console.log(error);
-          wait = false;
+      const json = JSON.parse(response.body);
+      if (response.statusCode != 200 || json.error) {
+        return {
+          allReps: false,
+          err: "Sorry, we could not find any representatives near that zipcode."
+        };
+      }
+
+      let indices = Array(0);
+      for (let office of json.offices) {
+        if (
+          office.name.indexOf("Representatives") > -1 ||
+          office.name.indexOf("Senate") > -1
+        ) {
+          indices = indices.concat(office.officialIndices);
         }
-      });
+      }
+      if (!indices.length) {
+        return {
+          allReps: false,
+          err: "Sorry, we could not find any representatives near that zipcode."
+        };
+      }
+      for (let index of indices) {
+        result.push(json.officials[index]);
+      }
+      return { allReps: result, err: false };
     })
     .catch(error => {
       console.log(error);
-      wait = false;
+      return {
+        allReps: false,
+        err: "Sorry, we could not find any representatives near that zipcode."
+      };
     });
-
-  while (wait) {
-    require("deasync").runLoopOnce();
-  }
-  return result;
-}
+};
 
 module.exports = { lookup };

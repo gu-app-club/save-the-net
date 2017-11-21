@@ -93,72 +93,65 @@ function send(request, response) {
     return;
   }
 
-  let allReps = representatives.lookup(requestData.address_zip);
-  if (!allReps) {
-    console.log("Could not locate reps from " + requestData.address_state);
-    response.send({
-      success: false,
-      message: "Could not locate reps from " + requestData.address_state
-    });
-    return;
-  }
-
-  let reps = allReps.filter(function(r) {
-    for (let rep of requestData.reps) {
-      if (rep.name == r.name) return r;
-    }
-  });
-
-  if (!reps.length) {
-    response.send({
-      success: false,
-      message: "No representatives selected."
-    });
-    return;
-  }
-
-  let purchase = payment.purchase(
-    150 * requestData.reps.length,
-    requestData.token
-  );
-
-  if (purchase.error) {
-    console.log(purchase.error);
-    response.send({
-      success: false,
-      message: "Payment failed."
-    });
-    return;
-  }
-
-  let urls = Array();
-  for (let rep of reps) {
-    let lobRes = lob(requestData, rep);
-    if (lobRes.error) {
-      console.log(error);
-      respones.send({
+  representatives.lookup(requestData.address_zip).then(({ allReps, err }) => {
+    if (err || !allReps.length) {
+      console.dir(err || "No reps.");
+      response.send({
         success: false,
-        message: "An unexpected error has occurred."
+        message: "Could not locate reps from " + requestData.address_state
       });
       return;
     }
-    urls.push(lobRes.response.url);
-  }
-  response.send({
-    success: true,
-    reps: reps,
-    urls: urls
-  });
-}
 
-function getrep(request, response) {
-  let zip = request.params.zipcode;
-  let reps = representatives.lookup(zip);
-  response.send(reps);
+    let reps = allReps.filter(function(r) {
+      for (let rep of requestData.reps) {
+        if (rep.name == r.name) return r;
+      }
+    });
+
+    if (!reps.length) {
+      response.send({
+        success: false,
+        message: "No representatives selected."
+      });
+      return;
+    }
+
+    let purchase = payment.purchase(
+      150 * requestData.reps.length,
+      requestData.token
+    );
+    if (purchase.error) {
+      console.log(purchase.error);
+      response.send({
+        success: false,
+        message: "Payment failed."
+      });
+      return;
+    }
+
+    let urls = Array();
+    for (let rep of reps) {
+      let lobRes = lob(requestData, rep);
+      if (lobRes.error) {
+        console.log(error);
+        respones.send({
+          success: false,
+          message: "An unexpected error has occurred."
+        });
+        return;
+      }
+      urls.push(lobRes.response.url);
+    }
+    response.send({
+      success: true,
+      reps: reps,
+      urls: urls
+    });
+  });
 }
 
 module.exports = {
   send,
-  lob,
-  getrep
+  lob
 };
