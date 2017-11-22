@@ -125,9 +125,9 @@ export default () => (
           to Evan <a href="https://twitter.com/flaqueeau"> on Twitter.</a> We're
           real people, we'd love to talk!
         </p>
-      </Section>
 
-      <Footer />
+        <Footer />
+      </Section>
     </ExtraPaddedContainer>
   </ThemeProvider>
 );
