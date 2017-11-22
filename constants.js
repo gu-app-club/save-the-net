@@ -6,7 +6,7 @@ const LOB_API_KEY =
 const STRIPE_PUBLIC_KEY =
   process.env.NODE_ENV != "production"
     ? "pk_test_YABJKguSbP5XcxnKjZ5JML2D"
-    : process.env.STRIPE_PUBLIC;
+    : "pk_live_VDQtEOscievPfMSwVxUCL50B";
 
 const STRIPE_PRIVATE_KEY =
   process.env.NODE_ENV != "production"
