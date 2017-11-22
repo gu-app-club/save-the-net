@@ -28,7 +28,9 @@ const Label = styled.label`
   margin-bottom: ${props => props.theme.spacing.lessPadding};
 `;
 
-const LetterContainer = styled.div`width: 100%;`;
+const LetterContainer = styled.div`
+  width: 100%;
+`;
 
 export class Letter extends React.Component {
   constructor(props) {
