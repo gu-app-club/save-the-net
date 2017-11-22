@@ -1,18 +1,20 @@
 import { SecondaryButton } from "./ui/buttons";
 import React from "react";
 import Link from "next/link";
+import styled from "styled-components";
+
+const FooterContainer = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  padding: ${props => props.theme.spacing.padding};
+`;
 
 class Footer extends React.Component {
   render() {
     return (
-      <div
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          flexDirection: "row"
-        }}
-      >
+      <FooterContainer>
         <Link href={"/privacy"}>
           <SecondaryButton style={{ backgroundColor: "#fafbfc" }}>
             Privacy
@@ -28,7 +30,7 @@ class Footer extends React.Component {
             GitHub
           </SecondaryButton>
         </a>
-      </div>
+      </FooterContainer>
     );
   }
 }

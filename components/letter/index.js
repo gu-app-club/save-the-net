@@ -216,8 +216,6 @@ export class Letter extends React.Component {
             onRepChoice={this.onRepChoice}
             reps={this.state.reps}
           />
-
-          <Footer />
         </LetterContainer>
       </Elements>
     );

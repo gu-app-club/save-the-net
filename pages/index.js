@@ -4,6 +4,8 @@ import { Letter } from "../components/letter";
 import styled, { injectGlobal, ThemeProvider } from "styled-components";
 import theme from "../theme";
 import { StripeProvider } from "react-stripe-elements-universal";
+import { Section, CenteredContainer } from "../components/ui/containers";
+import Footer from "../components/footer";
 
 // Base CSS
 injectGlobal`
@@ -43,26 +45,14 @@ const H1 = styled.h1`
   }
 `;
 
-const Section = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+const SectionWithPadding = Section.extend`
+  padding: ${props => props.theme.spacing.padding};
 `;
 
 const NoCardSection = styled.div`
   padding: ${props => props.theme.spacing.extraPadding}
     ${props => props.theme.spacing.extraPadding} 0
     ${props => props.theme.spacing.extraPadding};
-`;
-
-const ContentContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  max-width: 800px;
-  margin: 0 auto;
 `;
 
 export default class extends React.Component {
@@ -82,7 +72,7 @@ export default class extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
-          <ContentContainer>
+          <CenteredContainer>
             {this.state.showInfo == true && (
               <NoCardSection>
                 <H1>
@@ -105,16 +95,17 @@ export default class extends React.Component {
                 </p>
 
                 <p>
-                  We{"'"}ve made this easy. For $1.50, you can send a letter in 2
-                  minutes without ever leaving your house.
+                  We{"'"}ve made this easy. For $1.50, you can send a letter in
+                  2 minutes without ever leaving your house.
                 </p>
               </NoCardSection>
             )}
-            <Section>
+            <SectionWithPadding>
               <Head title="Save the Net" />
               <Letter changeShowInfo={this.changeShowInfo} />
-            </Section>
-          </ContentContainer>
+              <Footer />
+            </SectionWithPadding>
+          </CenteredContainer>
         </StripeProvider>
       </ThemeProvider>
     );
