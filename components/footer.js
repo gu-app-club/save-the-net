@@ -15,6 +15,11 @@ class Footer extends React.Component {
   render() {
     return (
       <FooterContainer>
+        <Link href={"/faq"}>
+          <SecondaryButton style={{ backgroundColor: "#fafbfc" }}>
+            FAQ
+          </SecondaryButton>
+        </Link>
         <Link href={"/privacy"}>
           <SecondaryButton style={{ backgroundColor: "#fafbfc" }}>
             Privacy
