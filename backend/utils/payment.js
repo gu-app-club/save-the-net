@@ -1,4 +1,5 @@
-const stripe = require("stripe")("sk_test_gOtKtBSsil3L6AWnpLPTvagI");
+const constants = require("../../constants");
+const stripe = require("stripe")(constants.STRIPE_PRIVATE_KEY);
 
 function purchase(price, token) {
   let response = { error: null, charge: null };

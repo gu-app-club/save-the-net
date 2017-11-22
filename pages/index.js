@@ -6,6 +6,7 @@ import theme from "../theme";
 import { StripeProvider } from "react-stripe-elements-universal";
 import { Section, CenteredContainer } from "../components/ui/containers";
 import Footer from "../components/footer";
+import constants from "../constants";
 
 // Base CSS
 injectGlobal`
@@ -71,7 +72,7 @@ export default class extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <StripeProvider apiKey="pk_test_YABJKguSbP5XcxnKjZ5JML2D">
+        <StripeProvider apiKey={constants.STRIPE_PUBLIC_KEY}>
           <CenteredContainer>
             {this.state.showInfo == true && (
               <NoCardSection>

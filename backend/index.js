@@ -1,7 +1,9 @@
 const zipcodes = require("zipcodes2016");
 const representatives = require("./utils/representatives");
 const template = require("./templates/template");
-const Lob = require("lob")("test_7baea6cc03130384038e90b624d4a3a11b1");
+const constants = require("../constants");
+
+const Lob = require("lob")(constants.LOB_API_KEY);
 
 const payment = require("./utils/payment");
 
