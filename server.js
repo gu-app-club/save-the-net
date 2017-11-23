@@ -13,7 +13,8 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
 
   server.get("*", (req, res) => {
-    return handle(req, res);
+    res.writeHead(301, { Location: "https://www.battleforthenet.com" });
+    res.end();
   });
   /* eslint-disable no-console */
   server.listen(port, err => {
